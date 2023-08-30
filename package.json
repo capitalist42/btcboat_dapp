@@ -9,9 +9,9 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@heavens_door/tsconfig": "*",
     "eslint": "^8.4.1",
     "prettier": "^2.5.1",
-    "tsconfig": "*",
     "turbo": "latest"
   },
   "packageManager": "yarn@1.22.19",
