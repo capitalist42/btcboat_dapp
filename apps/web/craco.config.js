@@ -4,6 +4,14 @@ module.exports = {
   typescript: {
     enableTypeChecking: true /* (default value) */,
   },
+  styple: {
+    postcss: {
+      loaderOptions: postcssLoaderOptions => {
+        postcssLoaderOptions.postcssOptions = require('@heavens_door/tailwindcss-config/postcss.config.js');
+        return postcssLoaderOptions;
+      }
+    }
+  },
   webpack: {
     configure: config => {
       

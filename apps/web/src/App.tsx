@@ -11,7 +11,7 @@ function App(): JSX.Element {
     <div className="App">
       <header className="App-header">
         <h1 className="header">Heaven&apos;s Door</h1>
-        <SimpleConnectWalletButton onConnect={connectWallet} text={"Connect Wallet to Start"}/>
+        <SimpleConnectWalletButton onConnect={connectWallet} text='Connect Wallet to Start'/>
       </header>
       <OnboardProvider dataAttribute="dapp-onboard" />
     </div>

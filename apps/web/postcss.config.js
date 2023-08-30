@@ -1,0 +1,1 @@
+module.exports = rqeuire("@heavens_door/tailwindcss-config/postcss.config")

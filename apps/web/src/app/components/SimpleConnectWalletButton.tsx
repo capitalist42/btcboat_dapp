@@ -2,7 +2,7 @@ import type { FC } from "react";
 import React from "react";
 
 export interface SimpleConnectWalletButtonProps {
-  onConnect: () => void;
+  onConnect: () => Promise<void>;
   pending?: boolean;
   className?: string;
   text: string;

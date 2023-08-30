@@ -15,6 +15,7 @@
   "devDependencies": {
     "@heavens_door/eslint-config-custom": "*",
     "@heavens_door/tsconfig": "*",
+    "@heavens_door/tailwindcss-config": "*",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "eslint": "^8.4.1",
