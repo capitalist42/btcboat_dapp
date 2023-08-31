@@ -6,6 +6,7 @@ export interface UseOnboardWalletHook {
   connectWallet: () => Promise<void>;
   disconnectWallet: () => Promise<void>;
   pending: boolean;
+  wallets: WalletState[];
 }
 
 export const useOnboardWallet = (): UseOnboardWalletHook => {
@@ -24,36 +25,36 @@ export const useOnboardWallet = (): UseOnboardWalletHook => {
     await onboard.disconnectWallet();
   }, []);
 
-  useEffect(() => {
-    const sub = connectWallet
-      .asObservable()
-      .subscribe(({ isProgress }) => setPending(isProgress));
-    return () => sub.unsubscribe();
-  }, [connectWallet]);
+  // useEffect(() => {
+  //   const sub = connectWallet
+  //     .asObservable()
+  //     .subscribe(({ isProgress }) => setPending(isProgress));
+  //   return () => sub.unsubscribe();
+  // }, [connectWallet]);
 
-  useEffect(() => {
-    const sub = onboard.state
-      .select("wallets")
-      .pipe(startWith(onboard.state.get().wallets))
-      .subscribe(setWallets);
-    return () => sub.unsubscribe();
-  }, []);
+  // useEffect(() => {
+  //   const sub = onboard.state
+  //     .select("wallets")
+  //     .pipe(startWith(onboard.state.get().wallets))
+  //     .subscribe(setWallets);
+  //   return () => sub.unsubscribe();
+  // }, []);
 
-  const firstAccount = useMemo(() => {
-    wallets[0]?.accounts[0]?.address;
-  }, [wallets]);
+  // const firstAccount = useMemo(() => {
+  //   wallets[0]?.accounts[0]?.address;
+  // }, [wallets]);
 
-  const getWallet = useCallback(
-    (index: number) => {
-      wallets[index];
-    },
-    [wallets]
-  );
+  // const getWallet = useCallback(
+  //   (index: number) => {
+  //     wallets[index];
+  //   },
+  //   [wallets]
+  // );
 
   return {
     connectWallet,
     disconnectWallet,
     pending,
-    account,
+    wallets,
   };
 };

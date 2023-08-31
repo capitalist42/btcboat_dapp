@@ -14,7 +14,9 @@
   "dependencies": {
     "@babel/core": "^7.22.11",
     "@babel/preset-typescript": "^7.22.11",
+    "@headlessui/react": "^1.7.17",
     "@heavens_door/tailwindcss-config": "*",
+    "@heroicons/react": "^2.0.18",
     "@sovryn/onboard-core": "^1.0.2",
     "@sovryn/onboard-injected": "^1.0.2",
     "@sovryn/onboard-react": "^1.0.8",
