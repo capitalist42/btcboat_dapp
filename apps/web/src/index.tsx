@@ -9,11 +9,13 @@ import "./styles/index.css"
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ErrorPage from "./error-page";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Hello World!</div>
+    element: <div>Hello World!</div>,
+    errorElement: <ErrorPage />,
   }
 ]);
 
