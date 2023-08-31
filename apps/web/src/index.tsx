@@ -1,9 +1,23 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom'
+
 import "./styles/index.css"
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Hello World!</div>
+  }
+]);
+
+
 
 const container = document.getElementById("root");
 if (!container) throw new Error("No root element found");
@@ -11,7 +25,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

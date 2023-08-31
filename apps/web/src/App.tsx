@@ -5,7 +5,6 @@ import "./App.css";
 import { useOnboardWallet } from "./hooks/useOnboardWallet";
 
 function App(): JSX.Element {
-  // const { connectWallet } = useWallet();
   const { connectWallet } = useOnboardWallet();
   return (
     <div className="App">
