@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+const webpack = require('webpack');
 
 module.exports = {
   typescript: {
@@ -14,7 +15,6 @@ module.exports = {
   },
   webpack: {
     configure: config => {
-      
       config.module.rules.push({
         test: /\.tsx?$/,
         loader: 'ts-loader',
@@ -29,10 +29,19 @@ module.exports = {
         buffer: require.resolve('buffer'),
         crypto: require.resolve('crypto-browserify'),
         assert: require.resolve('assert'), 
+        https:  require.resolve('https-browserify'),
+        http: require.resolve('stream-http'), 
+        url: require.resolve('url'),
       };
       config.ignoreWarnings = [
         /Failed to parse source map/,
       ];
+
+      config.plugins = (config.plugins || []).concat([
+        new webpack.ProvidePlugin({
+          Buffer: ['buffer', 'Buffer'],
+        })
+      ]);
       return config;
     }
   },
