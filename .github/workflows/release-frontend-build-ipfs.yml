@@ -16,3 +16,5 @@ jobs:
         uses: prompt/actions-commit-hash@v2
       - name: Install Dependencies
         run: yarn install
+      - name: Build Frontend Dapp
+        run: yarn build
