@@ -39,4 +39,4 @@ jobs:
           method: 'POST'
           bearerToken: ${{ secrets.PINATA_JWT }}
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"hashToPin": "{{ steps.generate_cidv1.outputs.hash }}", "pinataMetadata": { "name": "HD DApp Frontend ${{ steps.commit.outputs.short }}"}}'
+          data: '{"hashToPin": "${{ steps.generate_cidv1.outputs.cidv1 }}", "pinataMetadata": { "name": "HD DApp Frontend ${{ steps.commit.outputs.short }}"}}'
