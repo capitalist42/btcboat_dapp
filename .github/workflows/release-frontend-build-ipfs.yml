@@ -1,0 +1,68 @@
+name: Release HD Dapp Frontend build to IPFS
+
+on: workflow_dispatch
+
+jobs:
+  build_and_upload_frontend_dapp:
+    name: Build Frontend Dapp
+    runs-on: ubuntu-latest
+    outputs:
+      commit_hash: ${{ steps.commit.outputs.hash }}
+      commit_short_hash: ${{ steps.commit.outputs.short }}
+      cidv0: ${{ steps.upload_frontend_build.outputs.hash }}}
+      cidv1: ${{ steps.generate_cidv1.outputs.cidv1 }}}
+    steps: 
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - id: commit
+        uses: prompt/actions-commit-hash@v2
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build Frontend Dapp
+        run: yarn build
+      - name: Upload Frontend Build to IPFS (Pinata)
+        id: upload_frontend_build
+        uses: aquiladev/ipfs-action@master
+        with:
+          path: ./apps/web/build
+          service: pinata
+          pinataKey: ${{ secrets.PINATA_API_KEY }}
+          pinataSecret: ${{ secrets.PINATA_SECRET_API_KEY }}
+      - name: Generate CIDv1
+        id: generate_cidv1
+        uses: money-on-chain/convert-cidv0-cidv1@v1.0.0
+        with: 
+          cidv0: ${{ steps.upload_frontend_build.outputs.hash }}
+      - name: Pin Front Build with CIDv1
+        id: pin_frontend_build
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.pinata.cloud/pinning/pinByHash'
+          method: 'POST'
+          bearerToken: ${{ secrets.PINATA_JWT }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"hashToPin": "${{ steps.generate_cidv1.outputs.cidv1 }}", "pinataMetadata": { "name": "HD DApp Frontend ${{ steps.commit.outputs.short }}"}}'
+
+  create_github_release:
+    name: Create Github Release
+    needs: build_and_upload_frontend_dapp
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Create Github Release With IPFS Gateway
+        id: create_release
+        if: ${{ vars.IPFS_GATEWAY_URL }}
+        uses: actions/create-release@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
+          release_name: Heaven's Door DApp Frontend IPFS Release ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
+          body: |
+            **Heaven's Door DAPP Testnet Gateways**:
+              - CIDv0: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv0 }}
+              - CIDv1: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
+              - ${{ vars.IPFS_GATEWAY_URL }}/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}            
+              - https://cloudflare-ipfs.com/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
+              - https://ipfs.io/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
+              - https://${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}.ipfs.dweb.link/
+              - [ipfs://${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}/](ipfs://${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}/)

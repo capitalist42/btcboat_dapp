@@ -2,8 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
-  LoaderFunctionArgs,
-  redirect,
   RouterProvider,
 } from "react-router-dom";
 
@@ -16,9 +14,7 @@ import GetStartedPage from "./app/pages/GetStartedPage";
 import OpenLocalAccount from "./app/pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
 import HomePage from "./app/pages/HomePage";
-import { onboard } from "./lib/WalletConnector";
 import { AutoConnectNetworkProvider } from "./app/context/AutoConnectNetworkProvider";
-import { reactLocalStorage } from "reactjs-localstorage";
 
 const router = createBrowserRouter([
   {
