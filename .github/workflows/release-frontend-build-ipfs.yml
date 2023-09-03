@@ -55,6 +55,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          draft: true
+          prerelease: true
           tag_name: ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
           release_name: Heaven's Door DApp Frontend IPFS Release ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
           body: |
