@@ -20,14 +20,12 @@ jobs:
         run: yarn build
       - name: Upload Frontend Build to IPFS (Pinata)
         id: upload_frontend_build
-        uses: anantaramdas/ipfs-pinata-deploy-action@v1.6.4
+        uses: aquiladev/ipfs-action@master
         with:
-          pin-name: "Heaven's Door Dapp Frontend ${{ steps.commit.outputs.commit_short_hash }}"
-          path: 'apps/web/build'
-          pinata-api-key:  ${{ secrets.PINATA_API_KEY }}}
-          pinata-secret-api-key:  ${{ secrets.PINATA_SECRET_API_KEY }}
-          verbose: true
-          remove-old: false
+          path: ./apps/web/build
+          service: pinata
+          pinataKey: ${{ secrets.PINATA_API_KEY }}
+          pinataSecret: ${{ secrets.PINATA_SECRET_API_KEY }}
       - name: Generate CIDv1
         id: generate_cidv1
         uses: Uniswap/convert-cidv0-cidv1@v1.0.0
