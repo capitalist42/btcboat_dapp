@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 
@@ -16,7 +17,9 @@ import { OnboardProvider } from "@sovryn/onboard-react";
 import HomePage from "./app/pages/HomePage";
 import { AutoConnectNetworkProvider } from "./app/context/AutoConnectNetworkProvider";
 
-const router = createBrowserRouter([
+const IS_IPFS_BUILD = true;
+
+const routes = [
   {
     path: "get-started",
     children: [
@@ -35,7 +38,13 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+
+
+const createRouter = IS_IPFS_BUILD ? createHashRouter  :createBrowserRouter 
+
+const router = createRouter(routes);
 
 const container = document.getElementById("root");
 if (!container) throw new Error("No root element found");
