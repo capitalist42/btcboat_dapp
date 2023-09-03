@@ -23,8 +23,13 @@ jobs:
         uses: anantaramdas/ipfs-pinata-deploy-action@v1.6.4
         with:
           pin-name: "Heaven's Door Dapp Frontend ${{ steps.commit.outputs.commit_short_hash }}"
-          path: './app/web/build'
+          path: 'apps/web/build'
           pinata-api-key:  ${{ secrets.PINATA_API_KEY }}}
           pinata-secret-api-key:  ${{ secrets.PINATA_SECRET_API_KEY }}
           verbose: true
           remove-old: false
+      - name: Generate CIDv1
+        id: generate_cidv1
+        uses: Uniswap/convert-cidv0-cidv1@v1.0.0
+        with: 
+          cidv0: ${{ steps.upload_frontend_build.outputs.ipfs-hash }}
