@@ -3022,6 +3022,11 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
+"@types/reactjs-localstorage@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/reactjs-localstorage/-/reactjs-localstorage-1.0.0.tgz#10b2c562e0eb467d25b3adb8b4671ec8df0bfbec"
+  integrity sha512-0Y3f/vGR3yz46yfoqtyVljTfnKxYZVC87p2AXouO3Fc14/aBOUt8oKTLCDej8/sd5+yqx6WA2YBUsT2eSXx5cA==
+
 "@types/resolve@1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.17.1.tgz#3afd6ad8967c77e4376c598a82ddd58f46ec45d6"
@@ -9735,6 +9740,11 @@ react@^17.0.2:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+reactjs-localstorage@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/reactjs-localstorage/-/reactjs-localstorage-1.0.1.tgz#0c4311527d9e9abb31dc1c40d64cb886204e0f23"
+  integrity sha512-eNSwfiVyVDhfjw9h83PBvgqQcFxmyK6KGPrPlutuaaTlALRZVQLZ0MAN72iU9UT+bKtscwtdogHQ2ikZ7rjT+w==
 
 read-cache@^1.0.0:
   version "1.0.0"
