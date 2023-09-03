@@ -1,6 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, LoaderFunctionArgs, redirect, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  LoaderFunctionArgs,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 
 import "./styles/index.css";
 import "./index.css";
@@ -8,15 +13,20 @@ import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
 import RootPageContainer from "./routes/RootPageContainer";
 import GetStartedPage from "./app/pages/GetStartedPage";
+import OpenLocalAccount from "./app/pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
 import HomePage from "./app/pages/HomePage";
-import { onboard } from "./lib/connector";
+import { onboard } from "./lib/WalletConnector";
+import { AutoConnectNetworkProvider } from "./app/context/AutoConnectNetworkProvider";
+import { reactLocalStorage } from "reactjs-localstorage";
 
 const router = createBrowserRouter([
   {
-        path: "get-started",
-        element: <GetStartedPage />,
-        index: true,
+    path: "get-started",
+    children: [
+      { index: true, element: <GetStartedPage /> },
+      { path: "open-account", element: <OpenLocalAccount />, },
+    ],
   },
   {
     path: "/",
@@ -26,24 +36,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        loader: connectedWalletLoader,
-      }
+      },
     ],
   },
 ]);
-
-function connectedWalletLoader( { request }: LoaderFunctionArgs) {
-  console.debug(request)
-  const wallets = onboard.state.get().wallets;
-  // redirect to 'get-started' page if wallet is not connected
-  const isWalletConnected = wallets.length > 0 ;
-  if (isWalletConnected) {
-    return null;
-  } else {
-    return redirect("/get-started");
-  }
-  
-}
 
 const container = document.getElementById("root");
 if (!container) throw new Error("No root element found");
@@ -51,8 +47,11 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>}/>
-    <OnboardProvider dataAttribute="dapp-onboard" />
+    <AutoConnectNetworkProvider>
+      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+      <OnboardProvider dataAttribute="dapp-onboard" />
+    </AutoConnectNetworkProvider>
+   
   </React.StrictMode>
 );
 
