@@ -1,0 +1,14 @@
+name: Release Dapp Frontend build to IPFS
+
+on: workflow_dispatch
+
+jobs:
+  build_frontend_dapp:
+    name: Build Frontend Dapp
+    runs-on: ubuntu-latest
+    # outputs:
+    steps: 
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      # - id: commit
+      #   uses: pr-mpt/actions-commit-hash@v2
