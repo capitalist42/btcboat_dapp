@@ -28,6 +28,6 @@ jobs:
           pinataSecret: ${{ secrets.PINATA_SECRET_API_KEY }}
       - name: Generate CIDv1
         id: generate_cidv1
-        uses: Uniswap/convert-cidv0-cidv1@v1.0.0
+        uses: money-on-chain/convert-cidv0-cidv1@v1.0.0
         with: 
           cidv0: ${{ steps.upload_frontend_build.outputs.hash }}
