@@ -1,4 +1,4 @@
-name: Release Dapp Frontend build to IPFS
+name: Release HD Dapp Frontend build to IPFS
 
 on: workflow_dispatch
 
@@ -31,3 +31,12 @@ jobs:
         uses: money-on-chain/convert-cidv0-cidv1@v1.0.0
         with: 
           cidv0: ${{ steps.upload_frontend_build.outputs.hash }}
+      - name: Pin Front Build with CIDv1
+        id: pin_frontend_build
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.pinata.cloud/pinning/pinByHash'
+          method: 'POST'
+          bearerToken: ${{ secrets.PINATA_JWT }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"hashToPin": "{{ steps.generate_cidv1.outputs.hash }}", "pinataMetadata": { "name": "HD DApp Frontend ${{ steps.commit.outputs.short }}"}}'
