@@ -6,9 +6,12 @@ jobs:
   build_frontend_dapp:
     name: Build Frontend Dapp
     runs-on: ubuntu-latest
-    # outputs:
+    outputs:
+      commit_hash: ${{ steps.commit.outputs.hash }}
+      commit_short_hash: ${{ steps.commit.outputs.short }}
     steps: 
       - name: Checkout Repo
         uses: actions/checkout@v3
-      # - id: commit
-      #   uses: pr-mpt/actions-commit-hash@v2
+      - id: commit
+        uses: prompt/actions-commit-hash@v2
+  
