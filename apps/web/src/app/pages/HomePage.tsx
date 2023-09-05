@@ -1,12 +1,12 @@
 import React from "react";
 import { redirect } from "react-router-dom";
-import { useOnboardWallet } from "../../hooks/useOnboardWallet";
+import { useOnboardWalletHook } from "../../hooks/useOnboardWalletHook";
 // import { OnboardProvider } from "@sovryn/onboard-react";
 // import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
 // import { useOnboardWallet } from "../../hooks/useOnboardWallet";
 
 function HomePage(): JSX.Element {
-  const { firstAccountAddress } = useOnboardWallet();
+  const { firstAccountAddress } = useOnboardWalletHook();
 
   if (!firstAccountAddress) {
     redirect("/get-started");

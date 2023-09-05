@@ -1,10 +1,10 @@
 import React from "react";
 import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
-import { useOnboardWallet } from "../../hooks/useOnboardWallet";
-import { redirect } from "react-router-dom";
+import { useOnboardWalletHook } from "../../hooks/useOnboardWalletHook";
+// import { redirect } from "react-router-dom";
 
 function GetStartedPage(): JSX.Element {
-  const { connectWallet, firstAccountAddress } = useOnboardWallet();
+  const { connectWallet, firstAccountAddress } = useOnboardWalletHook();
   if (firstAccountAddress) {
     redirect("/get-started/open-account");
   }

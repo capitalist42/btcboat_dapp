@@ -13,7 +13,7 @@ export interface UseOnboardWalletHook {
   // firstAccount: WalletState
 }
 
-export const useOnboardWallet = (): UseOnboardWalletHook => {
+export const useOnboardWalletHook = (): UseOnboardWalletHook => {
   const [wallets, setWallets] = useState<WalletState[]>(
     onboard.state.get().wallets
   );
