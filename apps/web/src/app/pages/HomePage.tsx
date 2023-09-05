@@ -8,9 +8,6 @@ import { useOnboardWalletHook } from "../../hooks/useOnboardWalletHook";
 function HomePage(): JSX.Element {
   const { firstAccountAddress } = useOnboardWalletHook();
 
-  if (!firstAccountAddress) {
-    redirect("/get-started");
-  } 
   return (
     <div >
       HomePage
