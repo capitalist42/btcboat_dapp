@@ -63,7 +63,7 @@ jobs:
             **Heaven's Door DAPP Testnet Gateways**:
               - CIDv0: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv0 }}
               - CIDv1: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
-              - ${{ vars.IPFS_GATEWAY_URL }}/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}            
+              - ${{ vars.IPFS_GATEWAY_URL }}/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
               - https://cloudflare-ipfs.com/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
               - https://ipfs.io/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
               - https://${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}.ipfs.dweb.link/
