@@ -1,5 +1,5 @@
 import React from "react";
-import { redirect } from "react-router-dom";
+// import { redirect } from "react-router-dom";
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
 // import { OnboardProvider } from "@sovryn/onboard-react";
 // import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
@@ -10,7 +10,7 @@ function HomePage(): JSX.Element {
 
   return (
     <div >
-      HomePage
+      Address: {firstAccountAddress}
     </div>
   );
 }
