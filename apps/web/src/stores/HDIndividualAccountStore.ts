@@ -37,6 +37,7 @@ export const hdIndividualAccountStore = {
     chainId: number,
     externallyOwnedAccountAddress: string
   ) => {
+    // limit to only open one account ...
     // const key = getChainAddressKey(chainId, externallyOwnedAccountAddress);
     const index = 0;
     console.debug("getSmartWalletAddress...");
@@ -47,11 +48,16 @@ export const hdIndividualAccountStore = {
     console.debug("address", address);
     console.debug("saving to localstore...")
     await addLocalIndividualAccountToExistingRecord(chainId, externallyOwnedAccountAddress, {index, address, externallyOwnedAccountAddress});
-    state = {
-      ...state,
-      data: [...state.data, {index, address, externallyOwnedAccountAddress}],
-      accountCount: state.accountCount + 1,
-    };
+    if (state.data.length === 0) {
+      state = {
+        ...state,
+        data: [{index, address, externallyOwnedAccountAddress}],
+        accountCount: state.accountCount + 1,
+      };
+    } else {
+      console.error("only limited to one account...")
+    }
+    
     subject.next(state);
   },
 };
