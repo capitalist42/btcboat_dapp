@@ -1,7 +1,7 @@
 import { Observer, Subject } from "rxjs";
 import { getSmartWalletAddress } from "@rsksmart/rif-relay-client";
 import { HDIndividualAccount } from "../types";
-import { getChainAddressKey } from "../utils/getChainAddressKey";
+// import { getChainAddressKey } from "../utils/getChainAddressKey";
 import { addLocalIndividualAccountToExistingRecord } from "../utils/saveLocalIndividualAccountToExistingRecord";
 import { getLocalIndividualAccounts } from "../utils/getLocalIndividualAccounts";
 
@@ -23,13 +23,13 @@ export const hdIndividualAccountStore = {
       | ((value: unknown) => void)
       | undefined
   ) => subject.subscribe(setState),
-  loadAccountsFromLocalStorage: async (chainId: number, externallyOwnedAccountAddress) => {
+  loadAccountsFromLocalStorage: async (chainId: number, externallyOwnedAccountAddress: string) => {
     console.debug("loadAccountsFromLocalStorage...")
     const accounts = getLocalIndividualAccounts(chainId, externallyOwnedAccountAddress);
     console.debug("accounts: ", accounts)
     state = {
       ...state,
-      data: []
+      data: accounts
     };
     subject.next(state);
   },
