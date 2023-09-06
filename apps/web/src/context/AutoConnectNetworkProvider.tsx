@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import type { FC, PropsWithChildren } from "react";
-import { onboard } from "../../lib/WalletConnector";
+import { onboard } from "../lib/WalletConnector";
 import { reactLocalStorage } from "reactjs-localstorage";
 
 

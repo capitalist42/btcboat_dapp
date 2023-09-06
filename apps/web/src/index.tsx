@@ -11,11 +11,13 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
 import RootPageContainer from "./routes/RootPageContainer";
-import GetStartedPage from "./app/pages/GetStartedPage";
-import OpenLocalAccount from "./app/pages/OpenLocalAccount";
+import GetStartedPage from "./pages/GetStartedPage";
+import OpenLocalAccount from "./pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
-import HomePage from "./app/pages/HomePage";
-import { AutoConnectNetworkProvider } from "./app/context/AutoConnectNetworkProvider";
+import HomePage from "./pages/HomePage";
+import { AutoConnectNetworkProvider } from "./context/AutoConnectNetworkProvider";
+import { HDIndividualAccountStoreProvider } from "./context/HDIndividualAccountStoreProvider";
+import { RelaySystemProvider } from "./context/RelaySystemProvider";
 
 const IS_IPFS_BUILD = true;
 
@@ -24,7 +26,7 @@ const routes = [
     path: "get-started",
     children: [
       { index: true, element: <GetStartedPage /> },
-      { path: "open-account", element: <OpenLocalAccount />, },
+      { path: "open-account", element: <OpenLocalAccount /> },
     ],
   },
   {
@@ -40,9 +42,7 @@ const routes = [
   },
 ];
 
-
-
-const createRouter = IS_IPFS_BUILD ? createHashRouter  :createBrowserRouter 
+const createRouter = IS_IPFS_BUILD ? createHashRouter : createBrowserRouter;
 
 const router = createRouter(routes);
 
@@ -53,10 +53,16 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <AutoConnectNetworkProvider>
-      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
-      <OnboardProvider dataAttribute="dapp-onboard" />
+      <RelaySystemProvider>
+        <HDIndividualAccountStoreProvider>
+          <RouterProvider
+            router={router}
+            fallbackElement={<p>Initial Load...</p>}
+          />
+          <OnboardProvider dataAttribute="dapp-onboard" />
+        </HDIndividualAccountStoreProvider>
+      </RelaySystemProvider>
     </AutoConnectNetworkProvider>
-   
   </React.StrictMode>
 );
 

@@ -1,8 +1,9 @@
+import {providers} from 'ethers';
 import { useCallback, useEffect, useState, useMemo } from "react";
 import { reactLocalStorage } from "reactjs-localstorage";
-
-import { onboard } from "../lib/WalletConnector";
 import { WalletState } from "@sovryn/onboard-core";
+import { onboard } from "../lib/WalletConnector";
+
 const CONNECTED_WALLET_LABLE = "heavens-door-wallet-label";
 
 export interface UseOnboardWalletHook {
@@ -10,7 +11,7 @@ export interface UseOnboardWalletHook {
   disconnectWallet: () => Promise<void>;
   wallets: WalletState[];
   firstAccountAddress: string | undefined;
-  // firstAccount: WalletState
+  web3Provider: providers.Web3Provider | undefined;
 }
 
 export const useOnboardWalletHook = (): UseOnboardWalletHook => {
@@ -54,6 +55,10 @@ export const useOnboardWalletHook = (): UseOnboardWalletHook => {
     [wallets]
   );
 
+  const web3Provider = wallets[0]?.provider ? new providers.Web3Provider(wallets[0]?.provider) : undefined;
+
+
+
   // const firstAccount = useMemo(() => {
   //   wallets[0]?.accounts[0]?.address;
   // }, [wallets]);
@@ -70,5 +75,6 @@ export const useOnboardWalletHook = (): UseOnboardWalletHook => {
     disconnectWallet,
     wallets,
     firstAccountAddress,
+    web3Provider
   };
 };
