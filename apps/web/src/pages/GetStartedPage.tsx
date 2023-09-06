@@ -2,10 +2,12 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
-import { useOnboardWalletHook } from "../../hooks/useOnboardWalletHook";
+import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
+import { hdIndividualAccountStore } from "../stores/HDIndividualAccountStore";
 // import { redirect } from "react-router-dom";
 
 function GetStartedPage(): JSX.Element {
+  const chainId = 31;
   const { connectWallet, firstAccountAddress } = useOnboardWalletHook();
   const [openNewAccountModal, setOpenNewAccountModal] = useState(false);
   const cancelNewAccountModalButtonRef = useRef(null)
@@ -20,6 +22,14 @@ function GetStartedPage(): JSX.Element {
   
   }, [firstAccountAddress]);
 
+  
+  const handleOpenNewAccountButtonClicked = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.debug("handleOpenNewAccountButtonClicked")
+    event.preventDefault();
+    await hdIndividualAccountStore.openNewAccount(chainId, firstAccountAddress as string);
+    setOpenNewAccountModal(false);
+  }
+  
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
@@ -85,7 +95,7 @@ function GetStartedPage(): JSX.Element {
                     <button
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 sm:col-start-2"
-                      onClick={() => setOpenNewAccountModal(false)}
+                      onClick={handleOpenNewAccountButtonClicked}
                     >
                       Open Account
                     </button>
