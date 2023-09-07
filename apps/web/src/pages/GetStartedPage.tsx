@@ -1,33 +1,59 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
+
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
-import { hdIndividualAccountStore } from "../stores/HDIndividualAccountStore";
-// import { redirect } from "react-router-dom";
+import { useIndividualAccountHook } from "../hooks/useIndividualAccountHook";
 
 function GetStartedPage(): JSX.Element {
   const chainId = 31;
+  const navigate = useNavigate();
   const { connectWallet, firstAccountAddress } = useOnboardWalletHook();
+  const { accountState, openNewAccount} = useIndividualAccountHook();
   const [openNewAccountModal, setOpenNewAccountModal] = useState(false);
   const cancelNewAccountModalButtonRef = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     if (firstAccountAddress) {
       // redirect("/get-started/open-account");
       console.debug("firstAccountAddress", firstAccountAddress);
-      setOpenNewAccountModal(true);
+      console.debug("accountState.data.length", accountState.data.length);
+      switch (accountState.data.length) {
+        case 0: {
+
+          console.debug("setOpenNewAccountModal..")
+          setOpenNewAccountModal(true); 
+          break;
+        }
+        case 1: {
+          console.debug("accountState.data[0]", accountState.data[0]);
+          console.debug("redirect to /account")
+          navigate("/account");
+          break;
+        } 
+         
+        default: {
+          console.debug("error....")
+          break;
+        } 
+      }
+
+
     }
+
   
-  }, [firstAccountAddress]);
+  }, [firstAccountAddress, accountState, navigate]);
 
   
   const handleOpenNewAccountButtonClicked = async (event: React.MouseEvent<HTMLButtonElement>) => {
     console.debug("handleOpenNewAccountButtonClicked")
     event.preventDefault();
-    await hdIndividualAccountStore.openNewAccount(chainId, firstAccountAddress as string);
+    await openNewAccount(chainId, firstAccountAddress as string);
     setOpenNewAccountModal(false);
+    redirect("/account")
   }
   
   return (
@@ -114,6 +140,8 @@ function GetStartedPage(): JSX.Element {
           </div>
         </Dialog>
       </Transition.Root>
+
+
     </div>
   );
 }

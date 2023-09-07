@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect } from "react";
+import React, { FC, PropsWithChildren, useLayoutEffect } from "react";
 import {
   setProvider as setRIFRelayClientProvider,
   setEnvelopingConfig as setRIFRelayClientEnvelopingConfig,
@@ -9,7 +9,7 @@ import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
 export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const { web3Provider } = useOnboardWalletHook();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (web3Provider) {
       console.debug("setProvider for rif-relay-client");
       setRIFRelayClientProvider(web3Provider);

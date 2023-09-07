@@ -14,9 +14,9 @@ import RootPageContainer from "./routes/RootPageContainer";
 import GetStartedPage from "./pages/GetStartedPage";
 import OpenLocalAccount from "./pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
-import HomePage from "./pages/HomePage";
+import AccountPage from "./pages/AccountPage";
 import { AutoConnectNetworkProvider } from "./context/AutoConnectNetworkProvider";
-import { HDIndividualAccountStoreProvider } from "./context/HDIndividualAccountStoreProvider";
+import { IndividualAccountStoreProvider } from "./context/IndividualAccountStoreProvider";
 import { RelaySystemProvider } from "./context/RelaySystemProvider";
 
 const IS_IPFS_BUILD = true;
@@ -30,13 +30,13 @@ const routes = [
     ],
   },
   {
-    path: "/",
+    path: "/account",
     element: <RootPageContainer />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <AccountPage />,
       },
     ],
   },
@@ -54,13 +54,13 @@ root.render(
   <React.StrictMode>
     <AutoConnectNetworkProvider>
       <RelaySystemProvider>
-        <HDIndividualAccountStoreProvider>
+        <IndividualAccountStoreProvider>
           <RouterProvider
             router={router}
             fallbackElement={<p>Initial Load...</p>}
           />
           <OnboardProvider dataAttribute="dapp-onboard" />
-        </HDIndividualAccountStoreProvider>
+        </IndividualAccountStoreProvider>
       </RelaySystemProvider>
     </AutoConnectNetworkProvider>
   </React.StrictMode>
