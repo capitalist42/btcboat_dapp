@@ -57,19 +57,6 @@ export const useOnboardWalletHook = (): UseOnboardWalletHook => {
 
   const web3Provider = wallets[0]?.provider ? new providers.Web3Provider(wallets[0]?.provider) : undefined;
 
-
-
-  // const firstAccount = useMemo(() => {
-  //   wallets[0]?.accounts[0]?.address;
-  // }, [wallets]);
-
-  // const getWallet = useCallback(
-  //   (index: number) => {
-  //     wallets[index];
-  //   },
-  //   [wallets]
-  // );
-
   return {
     connectWallet,
     disconnectWallet,

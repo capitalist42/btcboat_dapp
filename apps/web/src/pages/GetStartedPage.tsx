@@ -1,8 +1,8 @@
 import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition } from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/24/outline";
 import { SimpleConnectWalletButton } from "../components/SimpleConnectWalletButton";
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
 import { useIndividualAccountHook } from "../hooks/useIndividualAccountHook";
@@ -11,51 +11,45 @@ function GetStartedPage(): JSX.Element {
   const chainId = 31;
   const navigate = useNavigate();
   const { connectWallet, firstAccountAddress } = useOnboardWalletHook();
-  const { accountState, openNewAccount} = useIndividualAccountHook();
+  const { accountState, openNewAccount } = useIndividualAccountHook();
   const [openNewAccountModal, setOpenNewAccountModal] = useState(false);
-  const cancelNewAccountModalButtonRef = useRef(null)
+  const cancelNewAccountModalButtonRef = useRef(null);
 
   useLayoutEffect(() => {
-
     if (firstAccountAddress) {
-      // redirect("/get-started/open-account");
       console.debug("firstAccountAddress", firstAccountAddress);
       console.debug("accountState.data.length", accountState.data.length);
       switch (accountState.data.length) {
         case 0: {
-
-          console.debug("setOpenNewAccountModal..")
-          setOpenNewAccountModal(true); 
+          console.debug("setOpenNewAccountModal..");
+          setOpenNewAccountModal(true);
           break;
         }
         case 1: {
           console.debug("accountState.data[0]", accountState.data[0]);
-          console.debug("redirect to /account")
+          console.debug("redirect to /account");
           navigate("/account");
           break;
-        } 
-         
+        }
+
         default: {
-          console.debug("error....")
+          console.debug("error....");
           break;
-        } 
+        }
       }
-
-
     }
-
-  
   }, [firstAccountAddress, accountState, navigate]);
 
-  
-  const handleOpenNewAccountButtonClicked = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.debug("handleOpenNewAccountButtonClicked")
+  const handleOpenNewAccountButtonClicked = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    console.debug("handleOpenNewAccountButtonClicked");
     event.preventDefault();
     await openNewAccount(chainId, firstAccountAddress as string);
     setOpenNewAccountModal(false);
-    redirect("/account")
-  }
-  
+    redirect("/account");
+  };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
@@ -70,13 +64,21 @@ function GetStartedPage(): JSX.Element {
             text="Connect Wallet to Start"
             className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
           />
-          <a href="https://capitalist42.github.io/heavensdoor.github.io/" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href="https://capitalist42.github.io/heavensdoor.github.io/"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Learn more <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
       <Transition.Root show={openNewAccountModal} as={Fragment}>
-        <Dialog as="div" className="relative z-10" initialFocus={cancelNewAccountModalButtonRef} onClose={setOpenNewAccountModal}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          initialFocus={cancelNewAccountModalButtonRef}
+          onClose={setOpenNewAccountModal}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -103,16 +105,24 @@ function GetStartedPage(): JSX.Element {
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                   <div>
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                      <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
+                      <CheckIcon
+                        className="h-6 w-6 text-green-600"
+                        aria-hidden="true"
+                      />
                     </div>
                     <div className="mt-3 text-center sm:mt-5">
-                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        Wallet Connected 
+                      <Dialog.Title
+                        as="h3"
+                        className="text-base font-semibold leading-6 text-gray-900"
+                      >
+                        Wallet Connected
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                          pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Eius aliquam laudantium explicabo pariatur iste
+                          dolorem animi vitae error totam. At sapiente aliquam
+                          accusamus facere veritatis.
                         </p>
                       </div>
                     </div>
@@ -140,8 +150,6 @@ function GetStartedPage(): JSX.Element {
           </div>
         </Dialog>
       </Transition.Root>
-
-
     </div>
   );
 }

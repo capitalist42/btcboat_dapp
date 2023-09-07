@@ -7,7 +7,6 @@ import {
 // import { getProvider } from '@sovryn/ethers-provider';
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
 export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
-
   const { web3Provider } = useOnboardWalletHook();
   useLayoutEffect(() => {
     if (web3Provider) {
@@ -21,10 +20,9 @@ export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
       process.env["REACT_APP_RIF_RELAY_VERIFIER_ADDRESS"]!;
     const deployVerifierAddress =
       process.env["REACT_APP_RIF_DEPLOY_VERIFIER_ADDRESS"]!;
-    const smartWalletFactoryAddress = 
-        process.env['REACT_APP_CONTRACTS_SMART_WALLET_FACTORY']!;
-    const forwarderAddress =
-      process.env["REACT_APP_CONTRACTS_SMART_WALLET"]!;
+    const smartWalletFactoryAddress =
+      process.env["REACT_APP_CONTRACTS_SMART_WALLET_FACTORY"]!;
+    const forwarderAddress = process.env["REACT_APP_CONTRACTS_SMART_WALLET"]!;
     const preferredRelays =
       process.env["REACT_APP_RIF_RELAY_PREFERRED_RELAYS"]!.split(",");
     const envelopingConfig = {
@@ -41,7 +39,6 @@ export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
     };
     console.debug("envelopingConfig", envelopingConfig);
     setRIFRelayClientEnvelopingConfig(envelopingConfig);
-    
   }, [web3Provider]);
 
   return <>{children}</>;

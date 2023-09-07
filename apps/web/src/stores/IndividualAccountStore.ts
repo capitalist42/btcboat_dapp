@@ -45,7 +45,6 @@ export const individualAccountStore = {
     externallyOwnedAccountAddress: string
   ) => {
     // limit to only open one account ...
-    // const key = getChainAddressKey(chainId, externallyOwnedAccountAddress);
     const index = 0;
     console.debug("getSmartWalletAddress...");
     const address = await getSmartWalletAddress(
