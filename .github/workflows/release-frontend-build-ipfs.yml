@@ -2,8 +2,9 @@ name: Release HD Dapp Frontend build to IPFS
 
 on: 
   push: 
-    branchs: [ main dev]
-
+    branches:
+      - main
+      - dev
 jobs:
   build_and_upload_frontend_dapp:
     name: Build Frontend Dapp
