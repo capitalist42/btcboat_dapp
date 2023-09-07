@@ -1,20 +1,20 @@
 import { Observer, Subject } from "rxjs";
 import { getSmartWalletAddress } from "@rsksmart/rif-relay-client";
-import { HDIndividualAccount } from "../types";
+import { IndividualAccount } from "../types";
 // import { getChainAddressKey } from "../utils/getChainAddressKey";
-import { addLocalIndividualAccountToExistingRecord } from "../utils/saveLocalIndividualAccountToExistingRecord";
+import { saveIndividualAccountsToLocalStorage } from "../utils/saveIndividualAccountsToLocalStorage";
 import { getLocalIndividualAccounts } from "../utils/getLocalIndividualAccounts";
 
 const subject = new Subject();
 
-const initialState: { data: HDIndividualAccount[]; accountCount: number } = {
+const initialState: { data: IndividualAccount[]; accountCount: number } = {
   data: [],
   accountCount: 0,
 };
 
 let state = initialState;
 
-export const hdIndividualAccountStore = {
+export const individualAccountStore = {
   init: () => subject.next(state),
   initialState: initialState,
   subscribe: (
@@ -23,13 +23,20 @@ export const hdIndividualAccountStore = {
       | ((value: unknown) => void)
       | undefined
   ) => subject.subscribe(setState),
-  loadAccountsFromLocalStorage: async (chainId: number, externallyOwnedAccountAddress: string) => {
-    console.debug("loadAccountsFromLocalStorage...")
-    const accounts = getLocalIndividualAccounts(chainId, externallyOwnedAccountAddress);
-    console.debug("accounts: ", accounts)
+  loadAccountsFromLocalStorage: async (
+    chainId: number,
+    externallyOwnedAccountAddress: string
+  ) => {
+    console.debug("loadAccountsFromLocalStorage...");
+    const accounts = getLocalIndividualAccounts(
+      chainId,
+      externallyOwnedAccountAddress
+    );
+    console.debug("accounts: ", accounts);
     state = {
       ...state,
-      data: accounts
+      data: accounts,
+      accountCount: accounts.length,
     };
     subject.next(state);
   },
@@ -46,18 +53,23 @@ export const hdIndividualAccountStore = {
       index
     );
     console.debug("address", address);
-    console.debug("saving to localstore...")
-    await addLocalIndividualAccountToExistingRecord(chainId, externallyOwnedAccountAddress, {index, address, externallyOwnedAccountAddress});
+    const newAccount = { index, address, externallyOwnedAccountAddress };
     if (state.data.length === 0) {
+      // dev: should extract out to somewhere?; subscribe to data change and update localstorage
+      saveIndividualAccountsToLocalStorage(
+        chainId,
+        externallyOwnedAccountAddress,
+        [newAccount]
+      );
       state = {
         ...state,
-        data: [{index, address, externallyOwnedAccountAddress}],
+        data: [newAccount],
         accountCount: state.accountCount + 1,
       };
     } else {
-      console.error("only limited to one account...")
+      console.error("only limited to one account...");
     }
-    
+
     subject.next(state);
   },
 };

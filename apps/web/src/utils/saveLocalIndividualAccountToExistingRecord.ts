@@ -1,16 +1,25 @@
 import { reactLocalStorage } from "reactjs-localstorage";
-import { HDIndividualAccount } from "../types";
+import { IndividualAccount } from "../types";
 import { getChainAddressKey } from "./getChainAddressKey";
 import { getLocalIndividualAccounts } from "./getLocalIndividualAccounts";
 
+// avoid update records if the account already exists
 export const addLocalIndividualAccountToExistingRecord = (
   chainId: number,
   externallyOwnedAccountAddress: string,
-  newAccount: HDIndividualAccount
+  newAccount: IndividualAccount
 ): void => {
-  const existingAccounts = getLocalIndividualAccounts(chainId, externallyOwnedAccountAddress);
-  const newAccountList = [...existingAccounts, newAccount];
-  const key = getChainAddressKey(chainId, externallyOwnedAccountAddress);
-  const value = JSON.stringify(newAccountList);
-  reactLocalStorage.set(key, value);
+  const existingAccounts = getLocalIndividualAccounts(
+    chainId,
+    externallyOwnedAccountAddress
+  );
+  const foundAccount: IndividualAccount | undefined = existingAccounts.find(
+    (a) => a.address === newAccount.address
+  );
+  if (foundAccount === undefined) {
+    const newAccountList = [...existingAccounts, newAccount];
+    const key = getChainAddressKey(chainId, externallyOwnedAccountAddress);
+    const value = JSON.stringify(newAccountList);
+    reactLocalStorage.set(key, value);
+  }
 };

@@ -1,15 +1,13 @@
 import { reactLocalStorage } from "reactjs-localstorage";
-import { HDIndividualAccount } from "../types";
+import { IndividualAccount } from "../types";
 import { getChainAddressKey } from "./getChainAddressKey";
 
-export const addLocalIndividualAccount = (
+export const saveIndividualAccountsToLocalStorage = (
   chainId: number,
   externallyOwnedAccountAddress: string,
-  existingAccounts: HDIndividualAccount[],
-  newAccount: HDIndividualAccount
+  accounts: IndividualAccount[]
 ): void => {
-  const newAccountList = [...existingAccounts, newAccount];
   const key = getChainAddressKey(chainId, externallyOwnedAccountAddress);
-  const value = JSON.stringify(newAccountList);
+  const value = JSON.stringify(accounts);
   reactLocalStorage.set(key, value);
 };
