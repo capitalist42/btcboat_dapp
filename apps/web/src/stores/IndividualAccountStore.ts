@@ -1,4 +1,4 @@
-import { Observer, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { getSmartWalletAddress } from "@rsksmart/rif-relay-client";
 import { IndividualAccount } from "../types";
 // import { getChainAddressKey } from "../utils/getChainAddressKey";
@@ -17,12 +17,8 @@ let state = initialState;
 export const individualAccountStore = {
   init: () => subject.next(state),
   initialState: initialState,
-  subscribe: (
-    setState:
-      | Partial<Observer<unknown>>
-      | ((value: unknown) => void)
-      | undefined
-  ) => subject.subscribe(setState),
+  subscribe: (setState: (value: unknown) => void) =>
+    subject.subscribe(setState),
   loadAccountsFromLocalStorage: async (
     chainId: number,
     externallyOwnedAccountAddress: string
@@ -44,31 +40,39 @@ export const individualAccountStore = {
     chainId: number,
     externallyOwnedAccountAddress: string
   ) => {
+    console.debug("openNewAccount...");
     // limit to only open one account ...
     const index = 0;
     console.debug("getSmartWalletAddress...");
-    const address = await getSmartWalletAddress(
-      externallyOwnedAccountAddress,
-      index
-    );
-    console.debug("address", address);
-    const newAccount = { index, address, externallyOwnedAccountAddress };
-    if (state.data.length === 0) {
-      // dev: should extract out to somewhere?; subscribe to data change and update localstorage
-      saveIndividualAccountsToLocalStorage(
-        chainId,
-        externallyOwnedAccountAddress,
-        [newAccount]
-      );
-      state = {
-        ...state,
-        data: [newAccount],
-        accountCount: state.accountCount + 1,
-      };
-    } else {
-      console.error("only limited to one account...");
-    }
+    try {
 
-    subject.next(state);
+    
+    const address = await getSmartWalletAddress(
+        externallyOwnedAccountAddress,
+        index
+      );
+      console.debug("address", address);
+      const newAccount = { index, address, externallyOwnedAccountAddress };
+      if (state.data.length === 0) {
+        // dev: should extract out to somewhere?; subscribe to data change and update localstorage
+        saveIndividualAccountsToLocalStorage(
+          chainId,
+          externallyOwnedAccountAddress,
+          [newAccount]
+        );
+        state = {
+          ...state,
+          data: [newAccount],
+          accountCount: state.accountCount + 1,
+        };
+      } else {
+        console.error("only limited to one account...");
+      }
+
+      subject.next(state);
+    } catch (e) {
+      console.log("IndividualAccountStore.openNewAccount error: ");
+      console.debug(e);
+    }
   },
 };

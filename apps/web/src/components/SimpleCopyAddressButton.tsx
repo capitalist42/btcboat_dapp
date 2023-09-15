@@ -1,27 +1,27 @@
 import type { FC } from "react";
 import React from "react";
 
-export interface SimpleConnectWalletButtonProps {
-  onConnect: () => Promise<void>;
+export interface SimpleCopyAddressButtonProps {
+  onCopy: () => Promise<void>;
   pending?: boolean;
   className?: string;
-  text: string;
+  address: string;
 }
 
-export const SimpleConnectWalletButton: FC<SimpleConnectWalletButtonProps> = ({
-  onConnect,
+export const SimpleCopyAddressButton: FC<SimpleCopyAddressButtonProps> = ({
+  onCopy,
   pending,
   className,
-  text
+  address
 }) => {
   return (
     <button
       className={className}
       disabled={pending}
-      onClick={onConnect}
+      onClick={onCopy}
       type="button"
     >
-      {text}
+      {address}
     </button>
   );
 };
