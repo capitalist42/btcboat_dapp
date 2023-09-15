@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, PropsWithChildren, useLayoutEffect, useState } from "react";
+import React, {  FC, PropsWithChildren, useLayoutEffect, useState } from "react";
 import {
   setProvider as setRIFRelayClientProvider,
   setEnvelopingConfig as setRIFRelayClientEnvelopingConfig,
@@ -11,7 +11,9 @@ export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState]: [RelaySystemStoreState, React.Dispatch<React.SetStateAction<RelaySystemStoreState>>] = useState(relaySystemStore.initialState);
   console.debug("RelaySystemProvider state", state);
   useLayoutEffect(() => {
-    const subscription = relaySystemStore.subscribe(setState);
+    const subscription = relaySystemStore.subscribe((store) => {
+      setState(store as RelaySystemStoreState);
+    });
     relaySystemStore.init();
     return () => {
       subscription.unsubscribe();
