@@ -4,7 +4,7 @@ import { useIndividualAccountHook } from "../hooks/useIndividualAccountHook";
 import { PortfolioBalance } from '../components/PortfolioBalance';
 import { AssetsList } from "../components/AssetsList";
 import { Convert } from '../components/Convert';
-
+import { Lending } from '../components/Lending';
 function DashboardPage(): JSX.Element {
   const { firstAccountAddress } = useOnboardWalletHook();
   const { accountState } = useIndividualAccountHook();
@@ -27,7 +27,10 @@ function DashboardPage(): JSX.Element {
           <Convert />
         </div>
 
-        <div className="basis-3/5">Lending</div>
+        <div className="basis-3/5">
+
+          <Lending />
+        </div>
       </div>
     </>
   );
