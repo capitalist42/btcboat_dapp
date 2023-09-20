@@ -1,4 +1,4 @@
-# Heaven's Door Dapp    
+# BTCBoat Dapp    
 
 
 ## Install Packages 

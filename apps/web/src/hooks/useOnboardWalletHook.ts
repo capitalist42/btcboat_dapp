@@ -4,7 +4,7 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import { WalletState } from "@sovryn/onboard-core";
 import { onboard } from "../lib/WalletConnector";
 
-const CONNECTED_WALLET_LABLE = "heavens-door-wallet-label";
+const CONNECTED_WALLET_LABLE = "btcboat-wallet-label";
 
 export interface UseOnboardWalletHook {
   connectWallet: () => Promise<void>;

@@ -3,7 +3,7 @@ import type { FC, PropsWithChildren } from "react";
 import { onboard } from "../lib/WalletConnector";
 import { reactLocalStorage } from "reactjs-localstorage";
 
-const CONNECTED_WALLET_LABLE = "heavens-door-wallet-label";
+const CONNECTED_WALLET_LABLE = "btcboat-wallet-label";
 
 export const AutoConnectNetworkProvider: FC<PropsWithChildren> = ({
   children,

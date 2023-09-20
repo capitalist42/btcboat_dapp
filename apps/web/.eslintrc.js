@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["@heavens_door/eslint-config-custom/react"],
+  extends: ["@btcboat/eslint-config-custom/react"],
 };

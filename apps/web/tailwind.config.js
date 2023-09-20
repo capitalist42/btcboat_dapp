@@ -1,1 +1,1 @@
-module.exports = require("@heavens_door/tailwindcss-config/tailwind.config");
+module.exports = require("@btcboat/tailwindcss-config/tailwind.config");

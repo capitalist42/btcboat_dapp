@@ -61,9 +61,9 @@ jobs:
           draft: true
           prerelease: true
           tag_name: ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
-          release_name: Heaven's Door DApp Frontend IPFS Release ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
+          release_name: DApp Frontend IPFS Release ${{ needs.build_and_upload_frontend_dapp.outputs.commit_short_hash }}
           body: |
-            **Heaven's Door DAPP Testnet Gateways**:
+            **DAPP Testnet Gateways**:
               - CIDv0: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv0 }}
               - CIDv1: ${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}
               - ${{ vars.IPFS_GATEWAY_URL }}/ipfs/${{ needs.build_and_upload_frontend_dapp.outputs.cidv1 }}

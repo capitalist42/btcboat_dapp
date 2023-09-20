@@ -8,7 +8,7 @@ module.exports = {
   styple: {
     postcss: {
       loaderOptions: postcssLoaderOptions => {
-        postcssLoaderOptions.postcssOptions = require('@heavens_door/tailwindcss-config/postcss.config.js');
+        postcssLoaderOptions.postcssOptions = require('@btcboat/tailwindcss-config/postcss.config.js');
         return postcssLoaderOptions;
       }
     }

@@ -1,5 +1,5 @@
 {
-  "name": "@heavens_door/ui",
+  "name": "@btcboat/ui",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -13,9 +13,9 @@
     "lint": "eslint src/**/*"
   },
   "devDependencies": {
-    "@heavens_door/eslint-config-custom": "*",
-    "@heavens_door/tsconfig": "*",
-    "@heavens_door/tailwindcss-config": "*",
+    "@btcboat/eslint-config-custom": "*",
+    "@btcboat/tsconfig": "*",
+    "@btcboat/tailwindcss-config": "*",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "eslint": "^8.4.1",

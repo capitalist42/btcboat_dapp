@@ -1,1 +1,1 @@
-module.exports = rqeuire("@heavens_door/tailwindcss-config/postcss.config")
+module.exports = rqeuire("@btcboat/tailwindcss-config/postcss.config")

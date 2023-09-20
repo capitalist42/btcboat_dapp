@@ -1,5 +1,5 @@
 {
-  "extends": "@heavens_door/tsconfig/react-app.json",
+  "extends": "@btcboat/tsconfig/react-app.json",
   "exclude": ["node_modules"],
   "include": ["src"]
 }
