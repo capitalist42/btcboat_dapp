@@ -14,7 +14,7 @@ import RootPageContainer from "./routes/RootPageContainer";
 import GetStartedPage from "./pages/GetStartedPage";
 import OpenLocalAccount from "./pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
-import AccountPage from "./pages/AccountPage";
+import DashboardPage from "./pages/DashboardPage";
 import { AutoConnectNetworkProvider } from "./context/AutoConnectNetworkProvider";
 import { IndividualAccountStoreProvider } from "./context/IndividualAccountStoreProvider";
 import { RelaySystemProvider } from "./context/RelaySystemProvider";
@@ -30,13 +30,13 @@ const routes = [
     ],
   },
   {
-    path: "/account",
+    path: "/",
     element: <RootPageContainer />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <AccountPage />,
+        element: <DashboardPage />,
       },
     ],
   },

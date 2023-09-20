@@ -1,4 +1,7 @@
 {
+  "compilerOptions": {
+      "jsx": "react"
+  },
   "extends": "@btcboat/tsconfig/react-app.json",
   "exclude": ["node_modules"],
   "include": ["src"]
