@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { isAddressContainCode } from "../utils/isAddressContainCode";
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
 import { useIndividualAccountHook } from "../hooks/useIndividualAccountHook";
 import { DeployAccountModal } from "../components/DeployAccountModal";
@@ -8,20 +9,34 @@ import { Convert } from "../components/Convert";
 import { Lending } from "../components/Lending";
 
 function DashboardPage(): JSX.Element {
-  const { firstAccountAddress } = useOnboardWalletHook();
+  console.debug("DashboardPage");
+  const { firstAccountAddress, web3Provider } = useOnboardWalletHook();
   const { accountState } = useIndividualAccountHook();
   const [isDeployAccountModalOpen, setOpenDeployAccountModal] = useState(false);
+  const [doneCheckingIndividualAccountDeploymentStatus, setDoneCheckingIndividualAccountDeploymentStatus] = useState(false)
   const firstIndividualAccountAddress = accountState.data[0]
     ? accountState.data[0].address
     : null;
 
-  console.debug("firstAccountAddress", firstAccountAddress);
-  console.debug("accountState", accountState);
 
   useEffect(() => {
     // check firstIndividualAccountAddress deployment status on chain
-    setOpenDeployAccountModal(true);
-  }, [accountState]);
+    async function checkIndividualAccountDeploymentStatus() {
+      if (web3Provider && firstIndividualAccountAddress) {
+        const isDeployed = await isAddressContainCode(
+          web3Provider,
+          firstIndividualAccountAddress
+        );
+        if (!isDeployed) {
+          setOpenDeployAccountModal(true);
+          setDoneCheckingIndividualAccountDeploymentStatus(true);
+        }
+      }
+    }
+    if (!doneCheckingIndividualAccountDeploymentStatus) {
+      checkIndividualAccountDeploymentStatus();
+    } 
+  }, [web3Provider, firstIndividualAccountAddress, doneCheckingIndividualAccountDeploymentStatus])
 
   return (
     <>
