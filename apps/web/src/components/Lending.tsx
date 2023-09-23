@@ -12,12 +12,12 @@ export interface LendingProps {}
 
 export const Lending: FC<LendingProps> = () => {
   return (
-    <div className="bg-gray-800 rounded-lg p-10">
+    <div className="">
       <h1 className="text-base font-semibold leading-6 text-white">
         Lending
       </h1>
 
-      <div className="mt-8 flow-root">
+      <div className="flow-root bg-gray-800 rounded-lg mt-5 p-10">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table className="min-w-full divide-y divide-gray-300">

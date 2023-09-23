@@ -10,7 +10,7 @@ export const Convert: FC<ConvertProps> = () => {
         Convert
       </h1>
 
-      <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm bg-gray-800 p-10 rounded-md">
+      <div className="mt-5 sm:w-full sm:max-w bg-gray-800 p-10 rounded-md">
         <form className="space-y-6" action="#" method="POST">
           <div>
             <label

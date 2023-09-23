@@ -12,23 +12,22 @@ function DashboardPage(): JSX.Element {
   console.debug("accountState", accountState);
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
+      <div className="grid grid-cols-1 gap-4">
         <div className="">
          <PortfolioBalance />
         </div>
 
-        <div className="basis-3/5">
+        <div className="">
           <AssetsList />
         </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-1 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div className="">
           <Convert />
         </div>
 
         <div className="">
-
           <Lending />
         </div>
       </div>
