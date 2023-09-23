@@ -12,8 +12,8 @@ export interface LendingProps {}
 
 export const Lending: FC<LendingProps> = () => {
   return (
-    <div className="">
-      <h1 className="text-base font-semibold leading-6 text-gray-900">
+    <div className="bg-gray-800 rounded-lg p-10">
+      <h1 className="text-base font-semibold leading-6 text-white">
         Lending
       </h1>
 
@@ -25,25 +25,25 @@ export const Lending: FC<LendingProps> = () => {
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white   sm:pl-0"
                   >
                     Asset
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                   >
                     APY
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                   >
                     Balance
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                   >
                     Interest earned
                   </th>
@@ -52,22 +52,22 @@ export const Lending: FC<LendingProps> = () => {
               <tbody className="divide-y divide-gray-200">
                 {lendPools.map((lendPool) => (
                   <tr key={lendPool.asset}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
                       {lendPool.asset}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
                       {lendPool.apy}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
                       N/A
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
                       N/A
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                       <button
                         type="button"
-                        className="rounded bg-orange-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                        className="rounded bg-green-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                       >
                         Lend
                       </button>

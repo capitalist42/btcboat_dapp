@@ -12,8 +12,8 @@ function DashboardPage(): JSX.Element {
   console.debug("accountState", accountState);
   return (
     <>
-      <div className="flex flex-row mb-10">
-        <div className="basis-2/5 pr-10">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
+        <div className="">
          <PortfolioBalance />
         </div>
 
@@ -22,12 +22,12 @@ function DashboardPage(): JSX.Element {
         </div>
       </div>
       
-      <div className="flex flex-row">
-        <div className="basis-2/5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-1 mt-4">
+        <div className="">
           <Convert />
         </div>
 
-        <div className="basis-3/5">
+        <div className="">
 
           <Lending />
         </div>

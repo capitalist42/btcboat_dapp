@@ -5,11 +5,11 @@ import Footer from "../components/Footer";
 
 export default function RootPageContainer(): JSX.Element {
   return (
-    <div className="min-h-full">
+    <div className="h-full bg-gray-700">
       <div className="py-0">
         <Header />
         <main>
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-10">
             <Outlet />
           </div>
         </main>
