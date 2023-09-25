@@ -6,6 +6,8 @@ import {
 // import ethers from 'ethers'
 // import { getProvider } from '@sovryn/ethers-provider';
 import { useOnboardWalletHook } from "../hooks/useOnboardWalletHook";
+
+
 export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
   const { web3Provider } = useOnboardWalletHook();
   useLayoutEffect(() => {
@@ -14,17 +16,17 @@ export const RelaySystemProvider: FC<PropsWithChildren> = ({ children }) => {
       setRIFRelayClientProvider(web3Provider);
     }
     const logLevel = 1;
-    const chainId = parseInt(process.env["REACT_APP_RIF_RELAY_CHAIN_ID"]!);
-    const relayHubAddress = process.env["REACT_APP_RIF_RELAY_HUB_ADDRESS"]!;
+    const chainId = parseInt(process.env["REACT_APP_CHAIN_ID"]!);
+    const relayHubAddress = process.env["REACT_APP_CONTRACTS_RELAY_HUB"]!;
     const relayVerifierAddress =
-      process.env["REACT_APP_RIF_RELAY_VERIFIER_ADDRESS"]!;
+      process.env["REACT_APP_CONTRACTS_INDIVIDUAL_ACCOUNT_RELAY_VERIFIER"]!;
     const deployVerifierAddress =
-      process.env["REACT_APP_RIF_DEPLOY_VERIFIER_ADDRESS"]!;
+      process.env["REACT_APP_CONTRACTS_INDIVIDUAL_ACCOUNT_DEPLOY_VERIFIER"]!;
     const smartWalletFactoryAddress =
-      process.env["REACT_APP_CONTRACTS_SMART_WALLET_FACTORY"]!;
-    const forwarderAddress = process.env["REACT_APP_CONTRACTS_SMART_WALLET"]!;
+      process.env["REACT_APP_CONTRACTS_INDIVIDUAL_ACCOUNT_FACTORY"]!;
+    const forwarderAddress = process.env["REACT_APP_CONTRACTS_INDIVIDUAL_ACCOUNT"]!;
     const preferredRelays =
-      process.env["REACT_APP_RIF_RELAY_PREFERRED_RELAYS"]!.split(",");
+      process.env["REACT_APP_INDIVIDUAL_ACCOUNT_PREFERRED_RELAYS"]!.split(",");
     const envelopingConfig = {
       logLevel,
       chainId,

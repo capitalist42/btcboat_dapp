@@ -1,15 +1,15 @@
 import type { FC } from "react";
 import React from "react";
 
-export interface SimpleConnectWalletButtonProps {
-  onConnect: () => Promise<void>;
+export interface OpenTransferModalButtonProps {
+  onClick: () => Promise<void>;
   pending?: boolean;
   className?: string;
   text: string;
 }
 
-export const SimpleConnectWalletButton: FC<SimpleConnectWalletButtonProps> = ({
-  onConnect,
+export const TransferButtonButton: FC<OpenTransferModalButtonProps> = ({
+  onClick,
   pending,
   className,
   text
@@ -18,7 +18,7 @@ export const SimpleConnectWalletButton: FC<SimpleConnectWalletButtonProps> = ({
     <button
       className={className}
       disabled={pending}
-      onClick={onConnect}
+      onClick={onClick}
       type="button"
     >
       {text}

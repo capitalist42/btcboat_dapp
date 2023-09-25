@@ -17,18 +17,13 @@ function GetStartedPage(): JSX.Element {
 
   useLayoutEffect(() => {
     if (firstAccountAddress) {
-      console.debug("firstAccountAddress", firstAccountAddress);
-      console.debug("accountState.data.length", accountState.data.length);
       switch (accountState.data.length) {
         case 0: {
-          console.debug("setOpenNewAccountModal..");
           setOpenNewAccountModal(true);
           break;
         }
         case 1: {
-          console.debug("accountState.data[0]", accountState.data[0]);
-          console.debug("redirect to /account");
-          navigate("/account");
+          navigate("/");
           break;
         }
 
@@ -43,11 +38,10 @@ function GetStartedPage(): JSX.Element {
   const handleOpenNewAccountButtonClicked = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    console.debug("handleOpenNewAccountButtonClicked");
     event.preventDefault();
     await openNewAccount(chainId, firstAccountAddress as string);
     setOpenNewAccountModal(false);
-    redirect("/account");
+    redirect("/");
   };
 
   return (

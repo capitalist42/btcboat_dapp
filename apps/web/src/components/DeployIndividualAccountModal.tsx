@@ -1,18 +1,22 @@
 import type { FC } from "react";
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 
-export interface DeployAccountModalProps {
+export interface DeployIndividualAccountModalProps {
   individualAccountAddress: string | null;
   open: boolean,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>, 
+  handleDeployIndividualAccountButtonClicked: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  individualAccountDeploymentLoading: boolean,
 }
 
-export const DeployAccountModal: FC<DeployAccountModalProps> = ({
+export const DeployIndividualAccountModal: FC<DeployIndividualAccountModalProps> = ({
     individualAccountAddress,
     open,
-    setOpen
+    setOpen, 
+    handleDeployIndividualAccountButtonClicked,
+    individualAccountDeploymentLoading
 }) => {
   const cancelButtonRef = useRef(null);
 
@@ -79,7 +83,8 @@ export const DeployAccountModal: FC<DeployAccountModalProps> = ({
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    disabled={individualAccountDeploymentLoading}
+                    onClick={handleDeployIndividualAccountButtonClicked}
                   >
                     Deploy
                   </button>

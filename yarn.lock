@@ -291,9 +291,9 @@
   integrity sha512-3l6+4YOvc9wx7VlCSw4yQfcBo01ECA8TicQfbnCPuCEpRQrf+gTUyGdxNw+pyTUyywp6JRD1w0YQs9TpBXYlkw==
 
 "@babel/parser@^7.18.4":
-  version "7.22.15"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.15.tgz#d34592bfe288a32e741aa0663dbc4829fcd55160"
-  integrity sha512-RWmQ/sklUN9BvGGpCDgSubhHWfAx24XDTDObup4ffvxaYsptOg2P3KG0j+1eWKLxpkX0j0uHxmpq2Z1SP/VhxA==
+  version "7.22.16"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.16.tgz#180aead7f247305cce6551bea2720934e2fa2c95"
+  integrity sha512-+gPfKv8UWeKKeJTUxe59+OobVcrYHETCsORl61EmSkmgymguYk/X5bp7GuUIXaFsc6y++v8ZxPsLSSuujqDphA==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.22.5":
   version "7.22.5"
@@ -2676,17 +2676,17 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rsksmart/rif-relay-client@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@rsksmart/rif-relay-client/-/rif-relay-client-2.0.0.tgz#9f2c835b29ebc20628db96b761d7dad627994935"
-  integrity sha512-9lgRf6Q4tCoy3rCVeyqx/0ZN406SyM2gePsPd76ricj5IVKGboj8XpBjf/mPLogoEXVcOsHZ4O28P+tU9HuofA==
+"@rsksmart/rif-relay-client@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@rsksmart/rif-relay-client/-/rif-relay-client-2.1.0.tgz#60325e77f4cbbbf0d37b41b98027c27c7aa5cdc0"
+  integrity sha512-6KygFmwDSOA287ENrectEqqdZ+AbMWOpSUU+USacI+I32WeHSsCZwlhGh8aHdygKMcns4DRxJ7xFWxpIFdIUgw==
   dependencies:
     bignumber.js "^9.1.1"
     loglevel "~1.8.0"
     npmignore "^0.3.0"
     superagent "^8.0.9"
 
-"@rsksmart/rif-relay-contracts@^2.0.0-beta.1":
+"@rsksmart/rif-relay-contracts@2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@rsksmart/rif-relay-contracts/-/rif-relay-contracts-2.0.0-beta.1.tgz#7220301cba6aaebf367474e2aa4af696c4d1f661"
   integrity sha512-XKxdbFkn5QJmHkoYzLGSuHIZ1J9S9yNpyQetfyy4Cwu1nLJ2pIwaUKlRsGb8spOFFGp5TVZR0VZw5Cni/5JEnQ==
@@ -6948,10 +6948,15 @@ focus-trap@^7.0.0:
   dependencies:
     tabbable "^6.2.0"
 
-follow-redirects@^1.0.0, follow-redirects@^1.12.1, follow-redirects@^1.14.8, follow-redirects@^1.15.0:
+follow-redirects@^1.0.0, follow-redirects@^1.14.8, follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
+
+follow-redirects@^1.12.1:
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.3.tgz#fe2f3ef2690afce7e82ed0b44db08165b207123a"
+  integrity sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -7338,9 +7343,9 @@ hardhat-watcher@^2.5.0:
     chokidar "^3.5.3"
 
 hardhat@^2.10.2:
-  version "2.17.2"
-  resolved "https://registry.yarnpkg.com/hardhat/-/hardhat-2.17.2.tgz#250a8c8e76029e9bfbfb9b9abee68d5b350b5d4a"
-  integrity sha512-oUv40jBeHw0dKpbyQ+iH9cmNMziweLoTW3MnkNxJ2Gc0KGLrQR/1n4vV4xY60zn2LdmRgnwPqy3CgtY0mfwIIA==
+  version "2.17.3"
+  resolved "https://registry.yarnpkg.com/hardhat/-/hardhat-2.17.3.tgz#4cb15f2afdea5f108970ed72e5b81e6e53052cfb"
+  integrity sha512-SFZoYVXW1bWJZrIIKXOA+IgcctfuKXDwENywiYNT2dM3YQc4fXNaTbuk/vpPzHIF50upByx4zW5EqczKYQubsA==
   dependencies:
     "@ethersproject/abi" "^5.1.2"
     "@metamask/eth-sig-util" "^4.0.0"
@@ -8855,10 +8860,19 @@ just-extend@^4.0.2:
   resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-4.2.1.tgz#ef5e589afb61e5d66b24eca749409a8939a8c744"
   integrity sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==
 
-keccak@^3.0.0, keccak@^3.0.2, keccak@^3.0.3:
+keccak@^3.0.0, keccak@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/keccak/-/keccak-3.0.3.tgz#4bc35ad917be1ef54ff246f904c2bbbf9ac61276"
   integrity sha512-JZrLIAJWuZxKbCilMpNz5Vj7Vtb4scDG3dMXLOsbzBmQGyjwE61BbW7bJkfKKCShXiQZt3T6sBgALRtmd+nZaQ==
+  dependencies:
+    node-addon-api "^2.0.0"
+    node-gyp-build "^4.2.0"
+    readable-stream "^3.6.0"
+
+keccak@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/keccak/-/keccak-3.0.4.tgz#edc09b89e633c0549da444432ecf062ffadee86d"
+  integrity sha512-3vKuW0jV8J3XNTzvfyicFR5qvxrSAGl7KIhvgOu5cmWwM7tZRj3fMbj/pfIf4be7aznbc+prBWGjywox/g2Y6Q==
   dependencies:
     node-addon-api "^2.0.0"
     node-gyp-build "^4.2.0"
@@ -10546,9 +10560,9 @@ postcss@^8.3.5, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.4:
     source-map-js "^1.0.2"
 
 postcss@^8.4.14:
-  version "8.4.29"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.29.tgz#33bc121cf3b3688d4ddef50be869b2a54185a1dd"
-  integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
+  version "8.4.30"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.30.tgz#0e0648d551a606ef2192a26da4cabafcc09c1aa7"
+  integrity sha512-7ZEao1g4kd68l97aWG/etQKPKq07us0ieSZ2TnFDk11i0ZfDW2AwKHYU8qv4MZKqN2fdBfg+7q0ES06UA73C1g==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
@@ -12492,9 +12506,9 @@ unbox-primitive@^1.0.2:
     which-boxed-primitive "^1.0.2"
 
 undici@^5.14.0:
-  version "5.23.0"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-5.23.0.tgz#e7bdb0ed42cebe7b7aca87ced53e6eaafb8f8ca0"
-  integrity sha512-1D7w+fvRsqlQ9GscLBwcAJinqcZGHUKjbOmXdlE/v8BvEGXjeWAax+341q44EuTcHXXnfyKNbKRq4Lg7OzhMmg==
+  version "5.25.2"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.25.2.tgz#17ddc3e8ab3c77e473ae1547f3f2917a05da2820"
+  integrity sha512-tch8RbCfn1UUH1PeVCXva4V8gDpGAud/w0WubD6sHC46vYQ3KDxL+xv1A2UxK0N6jrVedutuPHxe1XIoqerwMw==
   dependencies:
     busboy "^1.6.0"
 

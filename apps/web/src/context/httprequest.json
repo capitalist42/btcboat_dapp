@@ -1,0 +1,41 @@
+{
+    "relayRequest": {
+        "request": {
+            "data": "0x00",
+            "from": "0x4c7622088afb6e4951f976038b6b0c043b61044b",
+            "nonce": {
+                "type": "BigNumber",
+                "hex": "0x00"
+            },
+            "relayHub": "0xfFe9b69a69980348a9dE05baC6727850a6992600",
+            "to": "0x0000000000000000000000000000000000000000",
+            "tokenAmount": 0,
+            "tokenContract": "0x007b3aa69a846cb1f76b60b3088230a52d2a83ac",
+            "tokenGas": {
+                "type": "BigNumber",
+                "hex": "0x00"
+            },
+            "value": {
+                "type": "BigNumber",
+                "hex": "0x00"
+            },
+            "validUntilTime": 1695481485,
+            "index": 0,
+            "recoverer": "0x0000000000000000000000000000000000000000"
+        },
+        "relayData": {
+            "callForwarder": "0xA468eD39Bf29c5D6f5a44D40380a8E401424Cc20",
+            "callVerifier": "0xf6C5f52fb88253d5865fc0a6b9215aBD46c50588",
+            "feesReceiver": "0x01cc782dd6fb29d5a719e70ca167853897080386",
+            "gasPrice": {
+                "type": "BigNumber",
+                "hex": "0x03938700"
+            }
+        }
+    },
+    "metadata": {
+        "relayHubAddress": "0xfFe9b69a69980348a9dE05baC6727850a6992600",
+        "signature": "0x5709a682b77c45fda4f6491b7a9920b25d75f296de24363b0c79c6d51fd04a5347501fd20a4a57d2277e7a3184a738d2eb7e269960a4752c75b9547bf0c22dee1b",
+        "relayMaxNonce": 3
+    }
+}

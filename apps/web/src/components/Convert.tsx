@@ -31,6 +31,7 @@ export const Convert: FC<ConvertProps> = () => {
           </div>
 
           <div>
+<<<<<<< HEAD
               <label
                 htmlFor="toAmount"
                 className="block text-sm font-medium leading-6 text-white"
@@ -38,6 +39,15 @@ export const Convert: FC<ConvertProps> = () => {
                 To
               </label>
               
+=======
+            <label
+              htmlFor="toAmount"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              To
+            </label>
+
+>>>>>>> deploy individual account
             <div className="mt-2">
               <input
                 id="toAmount"
@@ -54,12 +64,14 @@ export const Convert: FC<ConvertProps> = () => {
               type="submit"
               className="flex w-full justify-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
+<<<<<<< HEAD
               Swap
+=======
+              Confirm Convert
+>>>>>>> deploy individual account
             </button>
           </div>
         </form>
-
-        
       </div>
     </div>
   );

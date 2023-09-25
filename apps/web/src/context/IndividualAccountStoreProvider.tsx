@@ -9,18 +9,10 @@ export const IndividualAccountStoreProvider: FC<PropsWithChildren> = ({
 }) => {
   const { firstAccountAddress } = useOnboardWalletHook();
   const { accountState } = useIndividualAccountHook();
-  console.debug(
-    "IndividualAccountStoreProvider firstAccountAddress",
-    firstAccountAddress
-  );
-  console.debug("IndividualAccountStoreProvider accountState", accountState);
 
   useLayoutEffect(() => {
     const chainId = 31;
     if (firstAccountAddress) {
-      console.debug(
-        "IndividualAccountStoreProvider individualAccountStore.loadAccountsFromLocalStorage"
-      );
       individualAccountStore.loadAccountsFromLocalStorage(
         chainId,
         firstAccountAddress as string
