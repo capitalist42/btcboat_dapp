@@ -1,6 +1,7 @@
 {
   "name": "web",
   "version": "0.0.0",
+  "homepage": ".",
   "private": true,
   "scripts": {
     "start": "craco start",
