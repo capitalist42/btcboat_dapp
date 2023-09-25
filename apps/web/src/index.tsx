@@ -12,7 +12,7 @@ import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
 import RootPageContainer from "./routes/RootPageContainer";
 import GetStartedPage from "./pages/GetStartedPage";
-import OpenLocalAccount from "./pages/OpenLocalAccount";
+// import OpenLocalAccount from "./pages/OpenLocalAccount";
 import { OnboardProvider } from "@sovryn/onboard-react";
 import DashboardPage from "./pages/DashboardPage";
 import { AutoConnectNetworkProvider } from "./context/AutoConnectNetworkProvider";
@@ -26,7 +26,7 @@ const routes = [
     path: "get-started",
     children: [
       { index: true, element: <GetStartedPage /> },
-      { path: "open-account", element: <OpenLocalAccount /> },
+      // { path: "open-account", element: <OpenLocalAccount /> },
     ],
   },
   {
