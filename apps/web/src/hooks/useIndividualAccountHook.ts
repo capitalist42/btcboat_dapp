@@ -15,6 +15,7 @@ export interface UseIndividualAccountHook {
   ) => void;
   openNewAccount: (
     chainId: number,
+    provider: providers.Web3Provider,
     externallyOwnedAccountAddress: string
   ) => void;
   loadAccountsFromLocalStorage: (
@@ -38,6 +39,7 @@ export const useIndividualAccountHook = (): UseIndividualAccountHook => {
         store as {
           data: IndividualAccount[];
           accountCount: number;
+          isDeployed: boolean;
         }
       );
     });

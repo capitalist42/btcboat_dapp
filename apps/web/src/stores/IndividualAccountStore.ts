@@ -9,6 +9,7 @@ import { IndividualAccount } from "../types";
 // import { getChainAddressKey } from "../utils/getChainAddressKey";
 import { saveIndividualAccountsToLocalStorage } from "../utils/saveIndividualAccountsToLocalStorage";
 import { getLocalIndividualAccounts } from "../utils/getLocalIndividualAccounts";
+import { isAddressContainCode } from "../utils/isAddressContainCode";
 
 const subject = new Subject();
 
@@ -45,6 +46,7 @@ export const individualAccountStore = {
   },
   openNewAccount: async (
     chainId: number,
+    web3Provider: providers.Web3Provider,
     externallyOwnedAccountAddress: string
   ) => {
     // limit to only open one account ...
@@ -53,8 +55,11 @@ export const individualAccountStore = {
       externallyOwnedAccountAddress,
       index
     );
-    // const isDeployed = await
-    const newAccount = { index, address, externallyOwnedAccountAddress };
+    const isDeployed = await isAddressContainCode(
+      web3Provider,
+      address
+    );
+    const newAccount = { index, address, externallyOwnedAccountAddress, isDeployed };
     if (state.data.length === 0) {
       // dev: should extract out to somewhere?; subscribe to data change and update localstorage
       saveIndividualAccountsToLocalStorage(
@@ -93,7 +98,7 @@ export const individualAccountStore = {
     };
 
     const tx = await client.relayTransaction(relayTx);
-    const receipt = await provider.waitForTransaction(tx.hash!, 1, 40);
+    const receipt = await provider.waitForTransaction(tx.hash!, 1, 120);
     if (receipt === null) {
       throw new Error("deployIndividualAccount Transaction failed");
     }

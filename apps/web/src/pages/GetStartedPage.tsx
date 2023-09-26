@@ -10,7 +10,7 @@ import { useIndividualAccountHook } from "../hooks/useIndividualAccountHook";
 function GetStartedPage(): JSX.Element {
   const chainId = 31;
   const navigate = useNavigate();
-  const { connectWallet, firstAccountAddress } = useOnboardWalletHook();
+  const { connectWallet, firstAccountAddress, web3Provider } = useOnboardWalletHook();
   const { accountState, openNewAccount } = useIndividualAccountHook();
   const [openNewAccountModal, setOpenNewAccountModal] = useState(false);
   const cancelNewAccountModalButtonRef = useRef(null);
@@ -39,7 +39,7 @@ function GetStartedPage(): JSX.Element {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    await openNewAccount(chainId, firstAccountAddress as string);
+    await openNewAccount(chainId, web3Provider!, firstAccountAddress as string);
     setOpenNewAccountModal(false);
     redirect("/");
   };

@@ -28,7 +28,7 @@ function DashboardPage(): JSX.Element {
   const firstIndividualAccountAddress = accountState.data[0]
     ? accountState.data[0].address
     : null;
-
+  const firstIndividualAccountDeployed = accountState.data[0] ? accountState.data[0].isDeployed : null;
   const handleDeployIndividualAccountButtonClicked = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -77,6 +77,12 @@ function DashboardPage(): JSX.Element {
     doneCheckingIndividualAccountDeploymentStatus,
   ]);
 
+  useEffect(() => {
+    if (firstIndividualAccountDeployed) {
+      setOpenDeployAccountModal(false);
+    }
+  }, [firstIndividualAccountDeployed])
+
   return (
     <>
       <DeployIndividualAccountModal
@@ -88,6 +94,9 @@ function DashboardPage(): JSX.Element {
         }
         individualAccountDeploymentLoading={individualAccountDeploymentLoading}
       />
+      <h1 className="text-white">
+        {firstIndividualAccountAddress} Individual Account
+      </h1>
       <div className="grid grid-cols-1 gap-4">
         <div className="">
           <PortfolioBalance />
