@@ -36,16 +36,23 @@ function DashboardPage(): JSX.Element {
     // calling deployIndividualAccount function
     console.log("handleDeployButtonClicked...");
     const relayClient = new RelayClient();
-    deployIndividualAccount(chainId, web3Provider!,  relayClient, firstAccountAddress!);
+    deployIndividualAccount(
+      chainId,
+      web3Provider!,
+      relayClient,
+      firstAccountAddress!
+    );
   };
-
 
   useEffect(() => {
     // check firstIndividualAccountAddress deployment status on chain
     async function checkIndividualAccountDeploymentStatus() {
       console.debug("checkIndividualAccountDeploymentStatus");
       console.debug("web3Provider", web3Provider);
-      console.debug("firstIndividualAccountAddress", firstIndividualAccountAddress);
+      console.debug(
+        "firstIndividualAccountAddress",
+        firstIndividualAccountAddress
+      );
       if (web3Provider && firstIndividualAccountAddress) {
         const isDeployed = await isAddressContainCode(
           web3Provider,
@@ -54,7 +61,9 @@ function DashboardPage(): JSX.Element {
         if (!isDeployed) {
           setOpenDeployAccountModal(true);
         } else {
-          console.debug(`${firstIndividualAccountAddress} is deployed with code`)
+          console.debug(
+            `${firstIndividualAccountAddress} is deployed with code`
+          );
         }
         setDoneCheckingIndividualAccountDeploymentStatus(true);
       }
@@ -74,17 +83,23 @@ function DashboardPage(): JSX.Element {
         individualAccountAddress={firstIndividualAccountAddress}
         open={isDeployAccountModalOpen}
         setOpen={setOpenDeployAccountModal}
-        handleDeployIndividualAccountButtonClicked={handleDeployIndividualAccountButtonClicked}
+        handleDeployIndividualAccountButtonClicked={
+          handleDeployIndividualAccountButtonClicked
+        }
         individualAccountDeploymentLoading={individualAccountDeploymentLoading}
       />
       <div className="grid grid-cols-1 gap-4">
         <div className="">
           <PortfolioBalance />
         </div>
-
-        <div className="">
-          <AssetsList />
-        </div>
+        {firstIndividualAccountAddress && web3Provider ? (
+          <div className="">
+            <AssetsList
+              individualAccountAddress={firstIndividualAccountAddress!}
+              web3Provider={web3Provider!}
+            />
+          </div>
+        ) : null}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">

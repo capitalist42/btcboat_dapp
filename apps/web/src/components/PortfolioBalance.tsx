@@ -18,7 +18,7 @@ export const PortfolioBalance: FC<PortfolioBalanceProps> = () => {
             Balance
           </dt>
           <dd className="mt-1 text-3xl font-semibold tracking-tight text-white">
-            $4,501.32
+            N/A
           </dd>
         </div>
       </dl>
