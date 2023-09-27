@@ -13,8 +13,6 @@
     "clean": "rm -rf build"
   },
   "dependencies": {
-    "@babel/core": "^7.22.11",
-    "@babel/preset-typescript": "^7.22.11",
     "@headlessui/react": "^1.7.17",
     "@btcboat/tailwindcss-config": "*",
     "@heroicons/react": "^2.0.18",
@@ -26,7 +24,6 @@
     "@sovryn/onboard-ledger": "^1.0.3",
     "@sovryn/onboard-react": "^1.0.8",
     "@sovryn/ui": "^1.0.12",
-    "babel-loader": "^9.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.15.0",
@@ -37,7 +34,11 @@
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
+
+    "@babel/core": "^7.22.11",
+    "@babel/preset-typescript": "^7.22.11",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+
     "@craco/craco": "^7.1.0",
     "@btcboat/eslint-config-custom": "*",
     "@btcboat/tsconfig": "*",
@@ -50,6 +51,7 @@
     "@types/react-dom": "^18.2.0",
     "@types/reactjs-localstorage": "^1.0.0",
     "@types/testing-library__jest-dom": "^5.14.5",
+    "babel-loader": "^9.1.3",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",

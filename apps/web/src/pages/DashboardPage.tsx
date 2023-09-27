@@ -101,9 +101,10 @@ function DashboardPage(): JSX.Element {
         <div className="">
           <PortfolioBalance />
         </div>
-        {firstIndividualAccountAddress && web3Provider ? (
+        {firstAccountAddress && firstIndividualAccountAddress && web3Provider ? (
           <div className="">
             <AssetsList
+              accountAddress={firstAccountAddress!}
               individualAccountAddress={firstIndividualAccountAddress!}
               web3Provider={web3Provider!}
             />

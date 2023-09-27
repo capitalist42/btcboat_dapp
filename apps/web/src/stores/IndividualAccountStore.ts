@@ -98,7 +98,7 @@ export const individualAccountStore = {
     };
 
     const tx = await client.relayTransaction(relayTx);
-    const receipt = await provider.waitForTransaction(tx.hash!, 1, 120);
+    const receipt = await provider.waitForTransaction(tx.hash!, 1, 360);
     if (receipt === null) {
       throw new Error("deployIndividualAccount Transaction failed");
     }
