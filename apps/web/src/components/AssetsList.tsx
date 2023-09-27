@@ -116,9 +116,6 @@ export const AssetsList: FC<AssetsListProps> = ({
   return (
     <>
       <TransferModal
-        web3Provider={web3Provider}
-        accountAddress={accountAddress}
-        individualAccountAddress={individualAccountAddress}
         open={openTransferModel}
         setOpen={setOpenTransferModel}
         onTransferFormSubmit={onTransferFormSubmit}

@@ -1,22 +1,15 @@
 import type { FC } from "react";
 import React, { Fragment, useState, useRef } from "react";
-import { providers } from "ethers";
 import { Dialog, Transition } from "@headlessui/react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { SunIcon } from "@heroicons/react/24/solid";
 export interface TransferModalProps {
-  web3Provider: providers.Web3Provider;
-  accountAddress: string;
-  individualAccountAddress: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onTransferFormSubmit: (address: string, amount: string) => Promise<void>;
 }
 
 export const TransferModal: FC<TransferModalProps> = ({
-  web3Provider,
-  accountAddress,
-  individualAccountAddress,
   open,
   setOpen,
   onTransferFormSubmit,
