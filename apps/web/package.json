@@ -26,6 +26,7 @@
     "@sovryn/onboard-ledger": "^1.0.3",
     "@sovryn/onboard-react": "^1.0.8",
     "@sovryn/ui": "^1.0.12",
+    "@sovryn/utils": "^0.0.1",
     "graphql": "^16.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -1496,7 +1496,7 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/properties" "^5.7.0"
 
-"@ethersproject/bignumber@5.7.0", "@ethersproject/bignumber@^5.7.0":
+"@ethersproject/bignumber@*", "@ethersproject/bignumber@5.7.0", "@ethersproject/bignumber@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@ethersproject/bignumber/-/bignumber-5.7.0.tgz#e2f03837f268ba655ffba03a57853e18a18dc9c2"
   integrity sha512-n1CAdIHRWjSucQO3MC1zPSVgV/6dy/fjL9pMrPP9peL+QxEg9wOsVqwD4+818B6LUEtaXzVHQiuivzRoxPxUGw==
@@ -3041,6 +3041,13 @@
     identity-obj-proxy "3.0.0"
     jest-canvas-mock "2.4.0"
     lottie-react "2.3.1"
+
+"@sovryn/utils@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@sovryn/utils/-/utils-0.0.1.tgz#5486c55447db533b44116d0926fb39bc2f70d8e5"
+  integrity sha512-wFrTojrXuVruLKYMNI9OJ6Fd4nHCXDFNBj8q8T2UGJI1llsl/2rjjV2o8G1y10EVXLpxCLFWyGtmVBrQIR0AWw==
+  dependencies:
+    "@ethersproject/bignumber" "*"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
