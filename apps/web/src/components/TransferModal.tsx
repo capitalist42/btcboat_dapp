@@ -106,6 +106,7 @@ export const TransferModal: FC<TransferModalProps> = ({
                             placeholder=""
                             aria-describedby="transfer-description"
                             onChange={handleAddressChange}
+                            value={address}
                           />
                         </div>
                         <p
@@ -129,6 +130,7 @@ export const TransferModal: FC<TransferModalProps> = ({
                             placeholder=""
                             aria-describedby="amount-description"
                             onChange={handleAmountChange}
+                            value={amount}
                           />
                         </div>
                         <p

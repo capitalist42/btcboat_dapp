@@ -44,6 +44,15 @@ function DashboardPage(): JSX.Element {
     );
   };
 
+
+  const onConvertFormSubmit = async(fromToken: string,
+    fromAmount: string,
+    toToken: string,
+    toAmount: string): Promise<void> => {
+      console.log("onConvertFormSubmit")
+    }
+
+
   useEffect(() => {
     // check firstIndividualAccountAddress deployment status on chain
     async function checkIndividualAccountDeploymentStatus() {
@@ -114,7 +123,7 @@ function DashboardPage(): JSX.Element {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div className="">
-          <Convert />
+          <Convert onConvertFormSubmit={onConvertFormSubmit}/>
         </div>
 
         <div className="">
