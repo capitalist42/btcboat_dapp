@@ -8,7 +8,35 @@ import { AssetsList } from "../components/AssetsList";
 import { Convert } from "../components/Convert";
 import { Lending } from "../components/Lending";
 import { RelayClient } from "@rsksmart/rif-relay-client";
+// import {
+//   ApolloClient,
+//   InMemoryCache,
+//   ApolloProvider,
+//   gql,
+// } from "@apollo/client";
 
+// const sovrynSubgraphclient = new ApolloClient({
+//   uri: "https://subgraph.sovryn.app/subgraphs/name/DistributedCollective/sovryn-subgraph",
+//   cache: new InMemoryCache(),
+// });
+
+// const QUERY_LENDING_POOLS = gql`
+//   query getLendingPools {
+//     lendingPools {
+//       id
+//       underlyingAsset {
+//         name
+//         symbol
+//       }
+//       poolTokenBalance
+//       assetBalance
+//       totalAssetLent
+//     }
+//   }
+// `;
+// sovrynSubgraphclient
+//   .query({ query: QUERY_LENDING_POOLS })
+//   .then((result) => console.log(result));
 function DashboardPage(): JSX.Element {
   console.debug("DashboardPage");
   const chainId = 31;
@@ -28,7 +56,9 @@ function DashboardPage(): JSX.Element {
   const firstIndividualAccountAddress = accountState.data[0]
     ? accountState.data[0].address
     : null;
-  const firstIndividualAccountDeployed = accountState.data[0] ? accountState.data[0].isDeployed : null;
+  const firstIndividualAccountDeployed = accountState.data[0]
+    ? accountState.data[0].isDeployed
+    : null;
   const handleDeployIndividualAccountButtonClicked = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -44,14 +74,14 @@ function DashboardPage(): JSX.Element {
     );
   };
 
-
-  const onConvertFormSubmit = async(fromToken: string,
+  const onConvertFormSubmit = async (
+    fromToken: string,
     fromAmount: string,
     toToken: string,
-    toAmount: string): Promise<void> => {
-      console.log("onConvertFormSubmit")
-    }
-
+    toAmount: string
+  ): Promise<void> => {
+    console.log("onConvertFormSubmit");
+  };
 
   useEffect(() => {
     // check firstIndividualAccountAddress deployment status on chain
@@ -90,7 +120,7 @@ function DashboardPage(): JSX.Element {
     if (firstIndividualAccountDeployed) {
       setOpenDeployAccountModal(false);
     }
-  }, [firstIndividualAccountDeployed])
+  }, [firstIndividualAccountDeployed]);
 
   return (
     <>
@@ -110,7 +140,9 @@ function DashboardPage(): JSX.Element {
         <div className="">
           <PortfolioBalance />
         </div>
-        {firstAccountAddress && firstIndividualAccountAddress && web3Provider ? (
+        {firstAccountAddress &&
+        firstIndividualAccountAddress &&
+        web3Provider ? (
           <div className="">
             <AssetsList
               accountAddress={firstAccountAddress!}
@@ -123,11 +155,11 @@ function DashboardPage(): JSX.Element {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div className="">
-          <Convert onConvertFormSubmit={onConvertFormSubmit}/>
+          <Convert onConvertFormSubmit={onConvertFormSubmit} />
         </div>
 
         <div className="">
-          <Lending />
+            <Lending />
         </div>
       </div>
     </>

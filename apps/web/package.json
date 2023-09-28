@@ -13,17 +13,20 @@
     "clean": "rm -rf build"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.17",
+    "@apollo/client": "^3.8.4",
     "@btcboat/tailwindcss-config": "*",
+    "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@rsksmart/rif-relay-client": "2.1.0",
     "@rsksmart/rif-relay-contracts": "2.0.0-beta.1",
+    "@sovryn/contracts": "^1.0.15",
     "@sovryn/ethers-provider": "^1.0.2",
     "@sovryn/onboard-core": "^1.0.2",
     "@sovryn/onboard-injected": "^1.0.2",
     "@sovryn/onboard-ledger": "^1.0.3",
     "@sovryn/onboard-react": "^1.0.8",
     "@sovryn/ui": "^1.0.12",
+    "graphql": "^16.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.15.0",
@@ -34,14 +37,12 @@
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
-
     "@babel/core": "^7.22.11",
-    "@babel/preset-typescript": "^7.22.11",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-
-    "@craco/craco": "^7.1.0",
+    "@babel/preset-typescript": "^7.22.11",
     "@btcboat/eslint-config-custom": "*",
     "@btcboat/tsconfig": "*",
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -51,8 +52,8 @@
     "@types/react-dom": "^18.2.0",
     "@types/reactjs-localstorage": "^1.0.0",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "babel-loader": "^9.1.3",
     "assert": "^2.0.0",
+    "babel-loader": "^9.1.3",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "https-browserify": "^1.0.0",

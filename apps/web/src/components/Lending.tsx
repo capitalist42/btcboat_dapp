@@ -1,21 +1,36 @@
 import type { FC } from "react";
 import React from "react";
+import { gql, useQuery } from "@apollo/client";
+import { lendingPoolList } from "../utils/LendingPoolMap";
+import { LendingRow } from "./lendingRow";
+// const QUERY_LENDING_POOLS = gql`
+// query getLendingPools {
+//   lendingPools {
+//     id
+//     underlyingAsset { name symbol}
+//     poolTokenBalance
+//     assetBalance
+//     totalAssetLent
+//   }
+// }
+// `;
 
-const lendPools = [
-  {
-    asset: "RBTC",
-    apy: "4%",
-  },
-];
-
+const lendingPools = lendingPoolList();
 export interface LendingProps {}
 
 export const Lending: FC<LendingProps> = () => {
+  // const {
+  //   loading: getLendingPoolsLoading,
+  //   error: getLendingPoolsError,
+  //   data: getLendingPoolsData,
+  // } = useQuery(QUERY_LENDING_POOLS);
+  // if (getLendingPoolsLoading) return <p>Loading...</p>;
+  // if (getLendingPoolsError)
+  //   return <p>Error : {getLendingPoolsError.message}</p>;
+
   return (
     <div className="">
-      <h1 className="text-base font-semibold leading-6 text-white">
-        Lending
-      </h1>
+      <h1 className="text-base font-semibold leading-6 text-white">Lending</h1>
 
       <div className="flow-root bg-gray-800 rounded-lg mt-5 p-10">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -50,29 +65,31 @@ export const Lending: FC<LendingProps> = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {lendPools.map((lendPool) => (
-                  <tr key={lendPool.asset}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                      {lendPool.asset}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                      {lendPool.apy}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                      N/A
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                      N/A
-                    </td>
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <button
-                        type="button"
-                        className="rounded bg-green-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-                      >
-                        Lend
-                      </button>
-                    </td>
-                  </tr>
+                {lendingPools.map((lendingPool) => (
+                  // <tr key={lendingPool.getName()}>
+                  //   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                  //     {lendingPool.getName()}
+                  //   </td>
+                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
+                  //     ....
+                  //   </td>
+                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
+                  //     N/A
+                  //   </td>
+                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
+                  //     N/A
+                  //   </td>
+                  //   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  //     <button
+                  //       type="button"
+                  //       className="rounded bg-green-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                  //     >
+                  //       Lend
+                  //     </button>
+                  //   </td>
+                  // </tr>
+
+                  <LendingRow pool={lendingPool} />
                 ))}
               </tbody>
             </table>

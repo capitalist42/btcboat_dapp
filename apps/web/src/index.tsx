@@ -46,6 +46,7 @@ const createRouter = IS_IPFS_BUILD ? createHashRouter : createBrowserRouter;
 
 const router = createRouter(routes);
 
+
 const container = document.getElementById("root");
 if (!container) throw new Error("No root element found");
 const root = createRoot(container);
