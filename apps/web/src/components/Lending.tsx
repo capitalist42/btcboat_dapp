@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+// import { gql, useQuery } from "@apollo/client";
 import { lendingPoolList } from "../utils/LendingPoolMap";
-import { LendingRow } from "./lendingRow";
+import { LendingRow } from "./LendingRow";
 // const QUERY_LENDING_POOLS = gql`
 // query getLendingPools {
 //   lendingPools {
@@ -66,29 +66,7 @@ export const Lending: FC<LendingProps> = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {lendingPools.map((lendingPool) => (
-                  // <tr key={lendingPool.getName()}>
-                  //   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                  //     {lendingPool.getName()}
-                  //   </td>
-                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                  //     ....
-                  //   </td>
-                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                  //     N/A
-                  //   </td>
-                  //   <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
-                  //     N/A
-                  //   </td>
-                  //   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  //     <button
-                  //       type="button"
-                  //       className="rounded bg-green-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-                  //     >
-                  //       Lend
-                  //     </button>
-                  //   </td>
-                  // </tr>
-
+      
                   <LendingRow pool={lendingPool} />
                 ))}
               </tbody>
