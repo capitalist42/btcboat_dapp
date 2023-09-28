@@ -12,7 +12,7 @@ export interface UseIndividualAccountHook {
     provider: providers.Web3Provider,
     client: RelayClient,
     externallyOwnedAccountAddress: string
-  ) => void;
+  ) => Promise<void>;
   openNewAccount: (
     chainId: number,
     provider: providers.Web3Provider,
@@ -47,7 +47,7 @@ export const useIndividualAccountHook = (): UseIndividualAccountHook => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const deployIndividualAccount = (
+  const deployIndividualAccount = async(
     chainId: number,
     provider: providers.Web3Provider,
     client: RelayClient,
@@ -55,7 +55,7 @@ export const useIndividualAccountHook = (): UseIndividualAccountHook => {
   ) => {
     console.debug("deployIndividualAccount....");
     setIndividualAccountDeploymentLoading(true);
-    individualAccountStore.deployIndividualAccount(
+    await individualAccountStore.deployIndividualAccount(
       chainId,
       provider,
       client,

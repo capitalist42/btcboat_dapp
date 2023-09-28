@@ -44,7 +44,6 @@ function DashboardPage(): JSX.Element {
   const { firstAccountAddress, web3Provider } = useOnboardWalletHook();
   const {
     accountState,
-    individualAccountDeploymentLoading,
     deployIndividualAccount,
   } = useIndividualAccountHook();
   const [isDeployAccountModalOpen, setOpenDeployAccountModal] = useState(false);
@@ -52,26 +51,22 @@ function DashboardPage(): JSX.Element {
     doneCheckingIndividualAccountDeploymentStatus,
     setDoneCheckingIndividualAccountDeploymentStatus,
   ] = useState(false);
-
   const firstIndividualAccountAddress = accountState.data[0]
     ? accountState.data[0].address
     : null;
   const firstIndividualAccountDeployed = accountState.data[0]
     ? accountState.data[0].isDeployed
     : null;
-  const handleDeployIndividualAccountButtonClicked = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    // calling deployIndividualAccount function
-    console.log("handleDeployButtonClicked...");
+
+  const handleDeployIndividualAccount = async () => {
     const relayClient = new RelayClient();
-    deployIndividualAccount(
+    await deployIndividualAccount(
       chainId,
       web3Provider!,
       relayClient,
       firstAccountAddress!
     );
+      
   };
 
   const onConvertFormSubmit = async (
@@ -128,10 +123,9 @@ function DashboardPage(): JSX.Element {
         individualAccountAddress={firstIndividualAccountAddress}
         open={isDeployAccountModalOpen}
         setOpen={setOpenDeployAccountModal}
-        handleDeployIndividualAccountButtonClicked={
-          handleDeployIndividualAccountButtonClicked
+        handleDeployIndividualAccount={
+          handleDeployIndividualAccount
         }
-        individualAccountDeploymentLoading={individualAccountDeploymentLoading}
       />
       <h1 className="text-white">
         {firstIndividualAccountAddress} Individual Account
